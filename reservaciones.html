@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitori</title>
+    
+    <!-- Estilos y fuentes -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="img/portada.png" as="image">
+    <link rel="preload" href="img/LogoMitori.png" as="image" media="(max-width: 768px)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/site.webmanifest">
+</head>
+<body>
+    <header>
+     <div class="logo">
+            <a href="index.html">
+      <img src="img/logo.png" alt="Logo de Mitori">
+    </a>
+        </div>
+
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="reservaciones.html">Reservacions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="reservation-form">
+            <h2>Fes la teva reserva</h2>
+           <form id="reservationForm" action="https://formspree.io/f/mpwdbjoy" method="post">
+
+                <div class="form-group">
+                    <label for="name">Nom complet:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correu electrònic:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telèfon:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Data:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Hora:</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Nombre de persones:</label>
+                    <select id="guests" name="guests" required>
+                        <option value="1">1 persona</option>
+                        <option value="2">2 persones</option>
+                        <option value="3">3 persones</option>
+                        <option value="4">4 persones</option>
+                        <option value="5">5 persones</option>
+                        <option value="6">6 persones</option>
+                        <option value="7">7+ persones</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comments">Comentaris adicionals:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Reservar</button>
+            </form>
+
+ 
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados..</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

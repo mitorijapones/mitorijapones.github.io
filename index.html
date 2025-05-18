@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitori</title>
+    
+    <!-- Estilos y fuentes -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="img/portada.png" as="image">
+    <link rel="preload" href="img/LogoMitori.png" as="image" media="(max-width: 768px)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/site.webmanifest">
+</head>
+
+
+<body>
+    <header>
+        <div class="logo">
+      <img src="img/logo.png" alt="Logo de Mitori" >
+    
+        </div>
+
+
+     <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="reservaciones.html">Reservacions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            
+
+             <div class="hero-content">
+            <h2>Benvinguts a l'experiència Japonesa culinaria</h2>
+            <p>Sabors auténtics, ingredients frescos</p>
+            <a href="reservaciones.html" class="btn">Reserva Ara</a>
+            </div>
+        </section>
+
+
+
+
+        <section class="about">
+            <h2>Sobre Nosaltres</h2>
+            <p>Fundat en 2025, nostre restaurant ofreix una fusió de sabors tradicionals amb un toc modern.</p>
+        </section>
+
+
+          <section class="experience-section">
+            <div class="experience-grid">
+                <!-- Tarjeta Ambiente -->
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="img/lobby.jpg" alt="Ambient en Mitori" class="ampliar-imagen">
+                    </div>
+                    <h2>Ambiente</h2>
+                    <p>Descobreix un ambient únic i encantador al nostre restaurant. <br>
+                    Cada racó us espera amb una experiència gastronòmica inoblidable. <br>
+                    Vine i deixa't sorprendre!</p>
+                </div>
+
+                <!-- Tarjeta Gastronomía -->
+                <div class="experience-card">
+                   <a href="menu.html" style="text-decoration: none; color: inherit;">
+                    <div class="experience-icon">
+                        <i class="fas fa-utensils fa-3x"></i>
+                    </div>
+                    <h2>Gastronomía</h2>
+                    <p>El nostre menú està curosament elaborat amb ingredients frescos i d'alta qualitat per oferir-vos una experiència culinària única Japonesa.</p>
+                </a>
+                </div>
+
+                <!-- Tarjeta Sashimi -->
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-fish fa-3x"></i>
+                    </div>
+                    <h2>Nigiris Fusión</h2>
+                    <p>Hem dissenyat nigiris únics que complementen a la perfecció l'experiència gastronòmica que oferim. Gaudeix d'una explosió de sabors i aromes a cada mos dels nostres exquisits nigiris.</p>
+                </div>
+            </div>
+        </section>
+
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+
+        <section class="hours-section">
+  <div class="experience-card">
+    <div class="experience-icon">
+      <i class="fas fa-clock fa-3x"></i>
+    </div>
+    <h2>Horari</h2>
+    <p>Dimecres a Divendres: 1:15 - 4p.m.</p>
+    <p>                  8:30 - 11:30p.m.</p>
+    <p>Disabte: 10am - 11pm</p>
+    <p>Diumenge: Tancat</p>
+  </div>
+</section>
+
+
+
+    </main>
+
+  <footer>
+        <p>Dirección: <a href="https://maps.app.goo.gl/ksyMBeZ2E3a1sNxE6" target="_blank" rel="noopener noreferrer">Passeig del Compositor Beethoven, 3, 25230 Mollerussa, Lleida</a></p>
+        
+        <div class="social-icons">
+          
+            
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/mitori_japones/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/34623703282/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <!-- Correo Email -->
+            <a href="mailto:luisjousesuastegui@gmail.com" target="_blank"  title="Enviar correo electrónico">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+
+
+        </div>
+        
+       
+
+
+
+        <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+/* =======================
+   VARIABLES GLOBALES
+========================== */
+:root {
+     --primary-color: #5E5246;
+     --secondary-color: #5E5246;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-bg: #f9f9f9;
+    --white: #fff;
+    --border-radius: 5px;
+}
+
+/* =======================
+   ESTILOS BASE
+========================== */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+/* =======================
+   HEADER & NAVIGATION
+========================== */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 2.2rem 20px; /* Ajusta padding si es necesario */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Necesario para posicionar el menú móvil */
+    flex-wrap: wrap; /* Permite que el logo y nav se reacomoden si no caben */
+}
+
+.logo img {
+    height: 70px; /* Ajusta esta altura según necesites. El ancho se ajustará automáticamente si solo pones la altura */
+    width: 200px; /* Opcional: un ancho máximo si quieres controlarlo también */
+    display: block; /* Elimina cualquier espacio extra debajo de la imagen */
+}
+
+
+
+
+nav ul {
+    list-style: none;
+    display: flex; /* Por defecto en línea para desktop */
+    gap: 10px;
+    margin: 0;
+    padding: 0; /* Quita padding por defecto de ul */
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background 0.3s;
+    border-radius: var(--border-radius);
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* Estilo para hover y enlace activo */
+    background: var(--secondary-color);
+}
+
+/* =======================
+   MENU TOGGLE BUTTON
+========================== */
+.menu-toggle {
+    display: none; /* Oculto en desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px; /* Área clickeable */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Animación */
+}
+
+
+
+/* =======================
+   RESPONSIVE (para menú)
+========================== */
+@media (max-width: 768px) {
+
+    header {
+    position: relative;
+    z-index: 1001; /* Agregar z-index para que el botón de menú hamburguesa esté por encima del nav */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+    .hero {
+     background: url('../img/LogoMitori.png') no-repeat center center/cover !important;
+  }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .experience-card {
+        margin: 0 1rem;
+    }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--primary-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 4rem;
+    overflow-y: auto;
+  }
+
+  nav.active {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 1rem 0;
+    color: var(--white);
+  }
+}
+
+
+
+
+
+/* =======================
+   MAIN CONTENT
+========================== */
+main {
+    padding: 20px;
+}
+
+/* Estilos para la sección de experiencias */
+.experience-section {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experience-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.experience-card:hover {
+    transform: translateY(-10px);
+}
+
+.experience-icon {
+    color: #e74c3c;
+    margin-bottom: 1.5rem;
+}
+
+.experience-card h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.experience-card p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+
+
+
+.experience-image {
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.experience-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hours-section {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hours-section .experience-card {
+  width: 310px; /* ajusta el ancho de la tarjeta según sea necesario */
+  margin-left: 30px; /* ajusta el valor según sea necesario */
+}
+
+
+
+
+
+
+
+/* =======================
+   FOOTER
+========================== */
+footer {
+    background: var(--primary-color); /* Ya lo tienes */
+    color: var(--white);             /* Ya lo tienes */
+    text-align: center;              /* Ya lo tienes */
+    padding: 1rem 1rem;              /* Ya lo tienes, puedes ajustar si necesitas más/menos espacio vertical */
+    margin-top: 30px;                /* Ya lo tienes */
+}
+
+/* Estilo para el párrafo de la dirección y el enlace */
+footer p {
+    margin-bottom: 0.5rem; /* Añade más espacio debajo de los párrafos */
+}
+
+footer p a {
+    color: var(--white); /* Asegura que el enlace sea blanco */
+    text-decoration: none; /* Quita el subrayado por defecto */
+    border-bottom: 1px solid transparent; /* Prepara para subrayado en hover */
+    transition: border-bottom 0.3s ease;
+}
+
+footer p a:hover {
+    border-bottom: 1px solid var(--white); /* Subrayado blanco al pasar el ratón */
+}
+
+/* Contenedor de los iconos sociales */
+.social-icons {
+    margin-bottom: 1rem; /* Espacio debajo de los iconos */
+    display: flex;         /* Usa flexbox para alinear */
+    justify-content: center; /* Centra los iconos */
+    gap: 1.5rem;           /* Espacio horizontal ENTRE iconos (ajusta según tu gusto) */
+}
+
+/* Estilo para los enlaces de los iconos */
+.social-icons a {
+    color: var(--white);       /* Color uniforme blanco para los iconos */
+    font-size: 1.8rem;       /* Haz los iconos más grandes (ajusta el valor) */
+    text-decoration: none;   /* Quita cualquier subrayado del enlace */
+    transition: transform 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+/* Efecto al pasar el ratón sobre los iconos */
+.social-icons a:hover {
+    transform: scale(1.2);      /* Agranda un poco el icono */
+    color: #cccccc;             /* Opcional: Cambia ligeramente el color (ej. gris claro) */
+    
+}
+
+/* Estilo para el texto de copyright (asegúrate de que use la clase o etiqueta correcta) */
+footer .copyright, /* Si añades una clase 'copyright' al párrafo */
+footer p:last-child { /* O selecciona el último párrafo si es siempre el copyright */
+    margin-bottom: 0; /* Quita el margen inferior del último elemento */
+    font-size: 0.9rem; /* Ligeramente más pequeño si quieres */
+    color: #bdc3c7;    /* Un gris claro para diferenciarlo un poco */
+}
+
+
+
+
+
+/* =======================
+   HOME PAGE - HERO
+========================== */
+.hero {
+    background: url('../img/portada.png') no-repeat center center/cover;
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Botón principal */
+.btn {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Secciones generales */
+.about, .hours {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+
+
+
+/* =======================
+   MENÚ
+========================== */
+.menu-category {
+    margin-bottom: 2rem;
+}
+
+.menu-category h3, .menu-item-left h4, .menu h2{
+    cursor: pointer;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Sawarabi Mincho', serif; /* Fuente japonesa */
+    color: #856433; /* Color dorado anaranjado */
+}
+
+.menu-item {
+    background: var(--light-bg);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    cursor: pointer;
+    flex-wrap: wrap; 
+}
+
+.menu-item-left {
+    flex: 1 1 100%;
+    color: #5E5246;
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+.menu-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin: 0 1rem;
+}
+
+.menu-item-left .description {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: black;
+}
+
+.menu-item.active .description {
+    
+     max-height: 500px; /* Ajusta este valor según sea necesario */
+    opacity: 1;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ccc;
+}
+
+
+/* =======================
+   FORMULARIO DE RESERVAS
+========================== */
+.reservation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: var(--secondary-color);
+}
+

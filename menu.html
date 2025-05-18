@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitori</title>
+    
+    <!-- Estilos y fuentes -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="img/portada.png" as="image">
+    <link rel="preload" href="img/LogoMitori.png" as="image" media="(max-width: 768px)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/site.webmanifest">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+      <img src="img/logo.png" alt="Logo de Mitori">
+    </a>
+        </div>
+
+
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+
+        <nav>
+           <ul class="nav-list">
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="reservaciones.html">Reservacions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+          <section class="menu">
+           <h2><a href="CartaMenu.pdf" target="_blank" style="text-decoration: none; color: inherit;">MENÚ (Click)</a></h2>
+            <div class="menu-category">
+                <h3>PLATS DESTACATS</h3>
+                <div class="menu-item">
+                    <div class="menu-item-left">
+                        <h4>PANIPURI DE SALMÓ (1 ud.)</h4>
+                        <p class="description">Cruixent indi farcit amb tartar de salmó, tòfona i kimchi.</p>
+                    </div>
+                    <img src="img/platos/image1.png" alt="Panipuri de salmó" class="menu-item-image">
+                    <span class="price">€3,50</span>
+                </div>
+              
+        </section>
+    
+
+         <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
