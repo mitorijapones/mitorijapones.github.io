@@ -105,7 +105,7 @@ nav ul li a.active { /* Estilo para hover y enlace activo */
   }
 
     .hero {
-     background: url('../img/LogoMitori.png') no-repeat center center/cover !important;
+     background: url('../img/LogoMitori.jpg') no-repeat center center/cover !important;
   }
 
     .experience-grid {
@@ -318,7 +318,7 @@ footer p:last-child { /* O selecciona el último párrafo si es siempre el copyr
    HOME PAGE - HERO
 ========================== */
 .hero {
-    background: url('../img/portada.png') no-repeat center center/cover;
+    background: url('../img/portada.jpg') no-repeat center center/cover;
     color: var(--white);
     padding: 4rem 2rem;
     text-align: center;
