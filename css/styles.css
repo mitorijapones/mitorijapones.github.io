@@ -217,7 +217,10 @@ main {
     font-size: 1.1rem;
 }
 
-
+.experience-card-link {
+  text-decoration: none;
+  color: inherit;
+}
 
 
 .experience-image {
@@ -235,6 +238,24 @@ main {
     object-fit: cover;
     transition: transform 0.3s ease;
 }
+
+.experience-video {
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.experience-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
 
 .hours-section {
   display: flex;

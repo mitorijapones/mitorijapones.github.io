@@ -148,3 +148,16 @@ menuItems.forEach(item => {
       modal.style.display = "none";
     }
   }
+
+document.querySelectorAll('.experience-card-link').forEach(link => {
+  link.addEventListener('click', function(event) {
+    let target = event.target;
+    while (target !== link) {
+      if (target.classList.contains('ampliar-imagen')) {
+        event.preventDefault();
+        return;
+      }
+      target = target.parentNode;
+    }
+  });
+});
