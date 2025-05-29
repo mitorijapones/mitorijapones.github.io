@@ -255,6 +255,18 @@ main {
 }
 
 
+.take-section {
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: center;
+}
+
+
+.take-section h2 {
+  color: #e74c3c;
+}
+
 
 
 .hours-section {
