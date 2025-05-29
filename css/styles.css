@@ -256,15 +256,44 @@ main {
 
 
 .take-section {
-  padding: 4rem 2rem;
-  background: #f8f9fa;
-  display: flex;
-  justify-content: center;
+    padding: 4rem 2rem;       /* Espaciado de la sección */
+    background: #ffffff;       /* Fondo blanco (o el que desees, diferente al gris) */
+    display: flex;
+    justify-content: center;   /* Centra la tarjeta take-card */
+    align-items: flex-start;   /* Alinea la tarjeta al inicio verticalmente */
 }
 
+.take-card-link {
+    text-decoration: none;     /* Estilos para el enlace de la tarjeta "Take Away" */
+    color: inherit;            /* Hereda el color del texto del padre */
+}
 
-.take-section h2 {
-  color: #e74c3c;
+.take-card {
+    background: white;         /* Fondo de la tarjeta */
+    padding: 2rem;             /* Espaciado interno de la tarjeta */
+    border-radius: 15px;       /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra de la tarjeta */
+    transition: transform 0.3s ease; /* Transición para el hover */
+    text-align: center;        /* Texto centrado */
+    max-width: 500px;          /* Opcional: define un ancho máximo si lo deseas */
+    /* Puedes añadir más estilos o modificar los existentes aquí */
+}
+
+.take-card:hover {
+    transform: translateY(-10px); /* Efecto hover, igual que experience-card */
+}
+
+.take-card h2 {
+    color: #e74c3c;             /* Color específico que tenías para el H2 de take-section, o cámbialo */
+    /* Si quieres que sea como experience-card h2 originalmente: color: #2c3e50; */
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.take-card p {
+    color: #555;                /* Color del párrafo */
+    line-height: 1.6;
+    font-size: 1.1rem;
 }
 
 
