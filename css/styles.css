@@ -256,7 +256,7 @@ main {
 
 
 .take-section {
-    padding: 4rem 2rem;       /* Espaciado de la sección */
+   /* padding: 4rem 2rem;        Espaciado de la sección */
     background: #ffffff;       /* Fondo blanco (o el que desees, diferente al gris) */
     display: flex;
     justify-content: center;   /* Centra la tarjeta take-card */
