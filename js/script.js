@@ -1,32 +1,157 @@
-// Manejo del formulario de reservaciones
-document.addEventListener('DOMContentLoaded', function() {
-    const reservationForm = document.getElementById('reservationForm');
-    
-    if (reservationForm) {
-        reservationForm.addEventListener('submit', function(e) {
-            // Obtener los valores del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const guests = document.getElementById('guests').value;
-            const comments = document.getElementById('comments').value;
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('reservationForm');
+  const messageBox = document.getElementById('reservation-message');
+  const afternoonCount = document.getElementById('afternoon-count');
+  const nightCount = document.getElementById('night-count');
+  const dateInput = document.getElementById('date');
+  const shiftSelect = document.getElementById('shift');
+  const guestsSelect = document.getElementById('guests');
+  const submitBtn = form.querySelector('button[type="submit"]');
 
-            // Validación básica
-            if (!name || !email || !date || !time || !guests) {
-                e.preventDefault();
-                alert('Por favor complete todos los campos requeridos');
-            } else {
-                // Mostrar mensaje de agradecimiento después de enviar el formulario
-                setTimeout(function() {
-                    alert('Gracias por tu reserva, pronto te contactaremos para confirmar tu reserva');
-                     reservationForm.reset();   // Limpiar el formulario
-                }, 1000);
-            }
-        });
+  const API_URL = 'https://script.google.com/macros/s/AKfycbzv3KUCIoWAgKNGUbkgfI1YxdhN59ZBobxgLHXpG8s9fCJiMblSyxqK3xBcvjtpUVINdQ/exec';
+
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  let availability = {};
+
+  dateInput.addEventListener('change', (e) => {
+    const selectedDate = e.target.value;
+    if (selectedDate) {
+      fetchAvailability(selectedDate);
     }
+  });
+
+  async function fetchAvailability(date) {
+    try {
+      const timestamp = new Date().getTime();
+      const response = await fetch(`${API_URL}?date=${date}&t=${timestamp}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const data = await response.json();
+      console.log('Disponibilidad:', data);
+
+      if (data.success) {
+        afternoonCount.textContent = data.afternoonAvailable;
+        nightCount.textContent = data.nightAvailable;
+        availability = {
+          afternoon: data.afternoonAvailable,
+          night: data.nightAvailable
+        };
+
+        messageBox.style.display = 'none';
+        updateGuestsOptions(shiftSelect.value);
+      }
+
+      if (data.message) {
+        messageBox.textContent = data.message;
+        messageBox.style.display = 'block';
+      }
+
+    } catch (error) {
+      console.error('Error en disponibilidad:', error);
+      messageBox.textContent = 'Error al conectar. Intenta nuevamente.';
+      messageBox.style.display = 'block';
+    }
+  }
+
+  shiftSelect.addEventListener('change', () => {
+    updateGuestsOptions(shiftSelect.value);
+  });
+
+  function updateGuestsOptions(shift) {
+    guestsSelect.innerHTML = '';
+    const maxAvailable = availability[shift];
+
+    if (!maxAvailable || maxAvailable <= 0) {
+      const option = document.createElement('option');
+      option.value = '';
+      option.textContent = 'Sense llocs disponibles';
+      guestsSelect.appendChild(option);
+      guestsSelect.disabled = true;
+      submitBtn.disabled = true;
+    } else {
+      guestsSelect.disabled = false;
+      submitBtn.disabled = false;
+
+      for (let i = 1; i <= Math.min(maxAvailable, 10); i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `${i} ${i === 1 ? 'persona' : 'persones'}`;
+        guestsSelect.appendChild(option);
+      }
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('name', form.name.value.trim());
+    formData.append('email', form.email.value.trim());
+    formData.append('phone', form.phone.value.trim());
+    formData.append('date', form.date.value);
+    formData.append('shift', form.shift.value);
+    formData.append('guests', form.guests.value);
+    formData.append('comments', form.comments.value.trim());
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        body: formData
+      });
+
+      const resultText = await response.text();
+      console.log('Respuesta cruda:', resultText);
+
+      let result;
+      try {
+        result = JSON.parse(resultText);
+      } catch (err) {
+        throw new Error('Respuesta no válida: ' + resultText);
+      }
+
+      if (result.success) {
+        showToast('¡Reserva realiztada amb èxit!', true);
+        form.reset();
+        availability = {};
+        afternoonCount.textContent = '23';
+        nightCount.textContent = '23';
+        guestsSelect.disabled = true;
+        submitBtn.disabled = true;
+      } else {
+        showToast('Error al registrar la reserva', false);
+      }
+    } catch (error) {
+      console.error('Error al enviar reserva:', error);
+      messageBox.textContent = 'No se pudo conectar con el servidor.';
+      messageBox.style.color = 'red';
+      messageBox.style.display = 'block';
+    }
+  });
 });
+
+function showToast(message, success = true) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.style.backgroundColor = success ? '#28a745' : '#dc3545'; // verde o rojo
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+}
+
+
+// --- Acordeón para secciones con toggle-title ---
+  document.querySelectorAll('.toggle-title').forEach(title => {
+    title.addEventListener('click', () => {
+      const content = title.nextElementSibling;
+      if (content && content.classList.contains('toggle-content')) {
+        content.classList.toggle('open');
+      }
+    });
+  });
 
 
 

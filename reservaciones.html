@@ -1,107 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitori</title>
-    
-    <!-- Estilos y fuentes -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mitori - Reservacions</title>
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
-    <link rel="manifest" href="img/icons/site.webmanifest">
-</head>
-<body>
-    <header>
-     <div class="logo">
-            <a href="index.html">
-      <img src="img/logo.png" alt="Logo de Mitori">
-    </a>
-        </div>
+        <!-- Estilos y fuentes -->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+            rel="stylesheet">
 
-        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="img/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32"
+            href="img/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="img/icons/favicon-16x16.png">
+        <link rel="manifest" href="img/icons/site.webmanifest">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="Logo de Mitori">
+                </a>
+            </div>
 
-        <nav>
-            <ul class="nav-list">
-                <li><a href="index.html">Inici</a></li>
-                <li><a href="menu.html">Menú</a></li>
-                <li><a href="https://wa.me/34623703282/" target="_blank" rel="noopener noreferrer">Take Away</a></li>
-            </ul>
-        </nav>
-    </header>
+            <button class="menu-toggle" aria-label="Abrir menú"
+                aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-    <main>
-        <section class="reservation-form">
-            <h2>Fes la teva reserva</h2>
-           <form id="reservationForm" action="https://formspree.io/f/mpwdbjoy" method="post">
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Inici</a></li>
+                    <li><a href="menu.html">Menú</a></li>
+                    <li><a href="https://wa.me/34623703282/" target="_blank"
+                            rel="noopener noreferrer">Take Away</a></li>
+                </ul>
+            </nav>
+        </header>
 
-                <div class="form-group">
-                    <label for="name">Nom complet:</label>
-                    <input type="text" id="name" name="Nombre" required placeholder="Introdueix el teu nom complet">
+        <main>
+            <section class="reservation-form">
+                <h2>Fes la teva reserva</h2>
+
+                <div class="reservation-info">
+                    <!-- Sección Capacitat per torn -->
+                    <div class="info-box capacity-info">
+                        <h3 class="toggle-title"><i class="fas fa-users"></i>
+                            Capacitat per torn</h3>
+                        <div class="toggle-content shift-container open">
+                            <p>Màxim 23 persones per torn</p>
+                            <div class="shift">
+                                <span class="shift-name">Tarda</span>
+                                <span class="shift-hours">13:30 - 15:00</span>
+                                <span class="shift-capacity"><span
+                                        id="afternoon-count">23</span>/23
+                                    places</span>
+                            </div>
+                            <div class="shift">
+                                <span class="shift-name">Nit</span>
+                                <span class="shift-hours">20:30 - 22:30</span>
+                                <span class="shift-capacity"><span
+                                        id="night-count">23</span>/23
+                                    places</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección Dies tancats -->
+                    <div class="info-box closed-info">
+                        <h3 class="toggle-title"><i
+                                class="fas fa-door-closed"></i> Dies
+                            tancats</h3>
+                        <div class="toggle-content">
+                            <p>Dilluns i dimarts</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Correu electrònic:</label>
-                    <input type="email" id="email" name="Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telèfon:</label>
-                    <input type="tel" id="phone" name="Telefono" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="date">Data: (Dilluns i dimarts tancat)</label>
-                    <input type="date" id="date" name="Fecha" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="time">Hora:</label>
-                    <input type="time" id="time" name="Hora" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="guests">Nombre de persones:</label>
-                    <select id="guests" name="Personas" required>
-                        <option value="1">1 persona</option>
-                        <option value="2">2 persones</option>
-                        <option value="3">3 persones</option>
-                        <option value="4">4 persones</option>
-                        <option value="5">5 persones</option>
-                        <option value="6">6 persones</option>
-                        <option value="7">7+ persones</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="comments">Comentaris adicionals:</label>
-                    <textarea id="comments" name="Comentarios" rows="4"></textarea>
-                </div>
-                
-                <button type="submit" class="btn">Reservar</button>
-            </form>
 
- 
+                <!-- Formulario -->
+                <form id="reservationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet:</label>
+                            <input type="text" id="name" name="name"
+                                required
+                                placeholder="Introdueix el teu nom complet">
+                        </div>
 
-        </section>
-    </main>
+                        <div class="form-group">
+                            <label for="email">Correu electrònic:</label>
+                            <input type="email" id="email" name="email"
+                                required placeholder="exemple@email.com">
+                        </div>
+                    </div>
 
-    <footer>
-        <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
-    </footer>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telèfon:</label>
+                            <input type="tel" id="phone" name="phone"
+                                inputmode="numeric" pattern="[0-9]*"
+                                required>
+                        </div>
 
-    <script src="js/script.js"></script>
-</body>
+                        <div class="form-group">
+                            <label for="date">Data:</label>
+                            <input type="date" id="date" name="date"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="shift">Torn:</label>
+                            <select id="shift" name="shift" required>
+                                <option value>Selecciona un torn</option>
+                                <option value="afternoon">Tarda (13:30 -
+                                    15:00)</option>
+                                <option value="night">Nit (20:30 -
+                                    22:30)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="guests">Nombre de persones:</label>
+                            <select id="guests" name="guests" required>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 persones</option>
+                                <option value="3">3 persones</option>
+                                <option value="4">4 persones</option>
+                                <option value="5">5 persones</option>
+                                <option value="6">6 persones</option>
+                                <option value="7">7 persones</option>
+                                <option value="8">8 persones</option>
+                                <option value="9">9 persones</option>
+                                <option value="10">10 persones</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments">Comentaris adicionals:</label>
+                        <textarea id="comments" name="comments" rows="4"
+                            placeholder="Al·lèrgies, preferències, etc."></textarea>
+                    </div>
+
+                    <!-- Mensajes del sistema -->
+                    <div id="reservation-message"
+                        class="reservation-message"></div>
+
+                    <button type="submit" class="btn">Reservar</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Restaurante Mitori. Todos los derechos
+                reservados.</p>
+        </footer>
+
+        <script src="js/script.js"></script>
+        <div id="toast" class="toast"></div>
+    </body>
 </html>
