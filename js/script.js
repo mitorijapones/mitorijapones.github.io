@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (day === 2) target.setDate(now.getDate() + 1); // martes → miércoles
       return target;
     })(),
-    onReady: function(selectedDates, dateStr) {
+    onReady: function (selectedDates, dateStr) {
       fetchAvailability(dateStr);
     },
-    onChange: function(selectedDates, dateStr) {
+    onChange: function (selectedDates, dateStr) {
       if (dateStr) fetchAvailability(dateStr);
     }
   });
@@ -101,6 +101,19 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const phoneValue = form.phone.value.trim();
+
+    // Validación robusta del teléfono
+    const phoneRegex = /^[67]\d{8}$/;
+
+     if (!phoneRegex.test(phoneValue)) {
+    showToast('El número de telèfon ha de tenir 9 dígits i començar per 6 o 7.', false);
+    form.phone.focus();
+    return;
+  }
+
+
+
     const formData = new FormData();
     formData.append('name', form.name.value.trim());
     formData.append('email', form.email.value.trim());
@@ -109,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formData.append('shift', form.shift.value);
     formData.append('guests', form.guests.value);
     formData.append('comments', form.comments.value.trim());
+
 
     try {
       const response = await fetch(API_URL, {

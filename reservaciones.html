@@ -112,8 +112,17 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Telèfon:</label>
-                            <input type="tel" id="phone" name="phone"
-                                inputmode="numeric" pattern="[0-9]*" required>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                inputmode="numeric"
+                                pattern="[67][0-9]{8}"
+                                maxlength="9"
+                                minlength="9"
+                                required
+                                placeholder="612345678"
+                                title="El número ha de tenir 9 dígits i començar per 6 o 7">
                         </div>
 
                         <div class="form-group">
