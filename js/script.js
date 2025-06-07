@@ -10,36 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API_URL = 'https://script.google.com/macros/s/AKfycbzv3KUCIoWAgKNGUbkgfI1YxdhN59ZBobxgLHXpG8s9fCJiMblSyxqK3xBcvjtpUVINdQ/exec';
 
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.min = today;
-
-  (function selectInitialDate() {
-    const now = new Date();
-    const dayOfWeek = now.getDay(); // 0 = Diumenge, 1 = Dilluns, ..., 6 = Dissabte
-    let targetDate = new Date(now);
-
-    // Si dilluns (1) o dimarts (2), passar a dimecres
-    if (dayOfWeek === 1) {
-      targetDate.setDate(now.getDate() + 2);
-    } else if (dayOfWeek === 2) {
-      targetDate.setDate(now.getDate() + 1);
-    }
-
-    const yyyy = targetDate.getFullYear();
-    const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
-    const dd = String(targetDate.getDate()).padStart(2, '0');
-    const formatted = `${yyyy}-${mm}-${dd}`;
-
-    dateInput.value = formatted;
-    fetchAvailability(formatted); // Mostrar disponibilidad del día automáticamente
-  })();
-
   let availability = {};
 
-  dateInput.addEventListener('change', (e) => {
-    const selectedDate = e.target.value;
-    if (selectedDate) {
-      fetchAvailability(selectedDate);
+  // Inicializar Flatpickr
+  flatpickr("#date", {
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    disable: [
+      function (date) {
+        return date.getDay() === 1 || date.getDay() === 2; // lunes o martes
+      }
+    ],
+    defaultDate: (() => {
+      const now = new Date();
+      const day = now.getDay();
+      const target = new Date(now);
+      if (day === 1) target.setDate(now.getDate() + 2); // lunes → miércoles
+      else if (day === 2) target.setDate(now.getDate() + 1); // martes → miércoles
+      return target;
+    })(),
+    onReady: function(selectedDates, dateStr) {
+      fetchAvailability(dateStr);
+    },
+    onChange: function(selectedDates, dateStr) {
+      if (dateStr) fetchAvailability(dateStr);
     }
   });
 
@@ -133,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (result.success) {
-        showToast('¡Reserva realiztada amb èxit!', true);
+        showToast('¡Reserva realitzada amb èxit!', true);
         form.reset();
         availability = {};
         afternoonCount.textContent = '23';

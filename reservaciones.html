@@ -16,6 +16,9 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
             rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180"
@@ -90,39 +93,39 @@
                     </div>
                 </div>
 
-                <!-- Formulario -->
+                <!-- Formulari -->
                 <form id="reservationForm">
+                    <!-- Data -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Data:</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+
+                    <!-- Nom i Correu -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Nom complet:</label>
-                            <input type="text" id="name" name="name"
-                                required
+                            <input type="text" id="name" name="name" required
                                 placeholder="Introdueix el teu nom complet">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Correu electrònic:</label>
-                            <input type="email" id="email" name="email"
-                                required placeholder="exemple@email.com">
+                            <input type="email" id="email" name="email" required
+                                placeholder="exemple@email.com">
                         </div>
                     </div>
 
+                    <!-- Telèfon i Torn -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Telèfon:</label>
                             <input type="tel" id="phone" name="phone"
-                                inputmode="numeric" pattern="[0-9]*"
-                                required>
+                                inputmode="numeric" pattern="[0-9]*" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="date">Data:</label>
-                            <input type="date" id="date" name="date"
-                                required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="shift">Torn:</label>
                             <select id="shift" name="shift" required>
@@ -133,39 +136,34 @@
                                     22:30)</option>
                             </select>
                         </div>
+                    </div>
 
+                    <!-- Nombre de persones -->
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="guests">Nombre de persones:</label>
-                            <select id="guests" name="guests" required>
-                                <option value="1">1 persona</option>
-                                <option value="2">2 persones</option>
-                                <option value="3">3 persones</option>
-                                <option value="4">4 persones</option>
-                                <option value="5">5 persones</option>
-                                <option value="6">6 persones</option>
-                                <option value="7">7 persones</option>
-                                <option value="8">8 persones</option>
-                                <option value="9">9 persones</option>
-                                <option value="10">10 persones</option>
+                            <select id="guests" name="guests" required disabled>
+                                <option value>Selecciona un torn</option>
                             </select>
                         </div>
                     </div>
 
+                    <!-- Comentaris -->
                     <div class="form-group">
                         <label for="comments">Comentaris adicionals:</label>
                         <textarea id="comments" name="comments" rows="4"
                             placeholder="Al·lèrgies, preferències, etc."></textarea>
                     </div>
 
-                    <!-- Mensajes del sistema -->
+                    <!-- Missatges del sistema -->
                     <div id="reservation-message"
                         class="reservation-message"></div>
 
+                    <!-- Botó -->
                     <button type="submit" class="btn">Reservar</button>
                 </form>
             </section>
         </main>
-
         <footer>
             <p>&copy; 2025 Restaurante Mitori. Todos los derechos
                 reservados.</p>
