@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageBox = document.getElementById('reservation-message');
   const afternoonCount = document.getElementById('afternoon-count');
   const nightCount = document.getElementById('night-count');
-  const dateInput = document.getElementById('date');
   const shiftSelect = document.getElementById('shift');
   const guestsSelect = document.getElementById('guests');
   const submitBtn = form.querySelector('button[type="submit"]');
