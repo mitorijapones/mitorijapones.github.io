@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('reservationForm');
   const API_URL = 'https://script.google.com/macros/s/AKfycbyKvLymEExDwcEr37Zp_3gTit6FLsYpwlUy4KICv20OIrWmStozSwBZ8UPy8RwrlUD6/exec';
-  
+
   // Elementos UI
   const afternoonCount = document.getElementById('afternoon-count');
   const nightCount = document.getElementById('night-count');
@@ -9,18 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const guestsSelect = document.getElementById('guests');
   const dateInput = document.getElementById('date');
   const submitBtn = form.querySelector('button[type="submit"]');
-  
+
   // Inicializar Flatpickr
+  const nextOpenDate = getNextOpenDate();
   flatpickr(dateInput, {
+    defaultDate: nextOpenDate,
     dateFormat: "Y-m-d",
     minDate: "today",
     disable: [date => [1, 2].includes(date.getDay())],
-    onReady: (_, dateStr) => fetchAvailability(dateStr),
+    onReady: (_, dateStr, fp) => {
+      dateInput.value = nextOpenDate;
+      fetchAvailability(nextOpenDate);
+    },
     onChange: (_, dateStr) => {
       fetchAvailability(dateStr);
       resetSelectors();
     }
   });
+
+  function getNextOpenDate() {
+    const today = new Date();
+    const day = today.getDay();
+    if (day === 1) today.setDate(today.getDate() + 2); // lunes
+    else if (day === 2) today.setDate(today.getDate() + 1); // martes
+    return today.toISOString().split('T')[0];
+  }
 
   function resetSelectors() {
     horaSelect.innerHTML = '<option value="">Selecciona una hora</option>';
@@ -32,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const res = await fetch(`${API_URL}?date=${date}&t=${Date.now()}`);
       const data = await res.json();
-      
+
       if (data.message === 'Tancat els dilluns i dimarts') {
         afternoonCount.textContent = '0';
         nightCount.textContent = '0';
@@ -55,23 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
       afternoon: ["13:30", "14:00", "14:30", "15:00"],
       night: ["20:30", "21:00", "21:30", "22:00", "22:30"]
     };
-    
+
     resetSelectors();
-    
+
     if (afternoon > 0) {
       times.afternoon.forEach(time => {
         const option = new Option(`Tarda - ${time}`, time);
         horaSelect.add(option);
       });
     }
-    
+
     if (night > 0) {
       times.night.forEach(time => {
         const option = new Option(`Nit - ${time}`, time);
         horaSelect.add(option);
       });
     }
-    
+
     if (horaSelect.options.length === 1) {
       horaSelect.innerHTML = '<option value="">Sense horaris disponibles</option>';
     }
@@ -80,26 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
   horaSelect.addEventListener('change', () => {
     const time = horaSelect.value;
     if (!time) return;
-    
+
     const shift = time < '18:00' ? 'afternoon' : 'night';
-    updateGuests(shift === 'afternoon' 
-      ? parseInt(afternoonCount.textContent) 
+    updateGuests(shift === 'afternoon'
+      ? parseInt(afternoonCount.textContent)
       : parseInt(nightCount.textContent)
     );
   });
 
   function updateGuests(available) {
     guestsSelect.innerHTML = '';
-    
+
     if (available <= 0) {
       guestsSelect.add(new Option('Sense llocs disponibles', ''));
       guestsSelect.disabled = true;
       return;
     }
-    
+
     guestsSelect.disabled = false;
     const max = Math.min(available, 10);
-    
+
     for (let i = 1; i <= max; i++) {
       guestsSelect.add(new Option(`${i} ${i === 1 ? 'persona' : 'persones'}`, i));
     }
@@ -107,44 +120,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
+    const phoneInput = document.getElementById('phone');
+    const phoneValue = phoneInput.value.trim();
+    const phoneRegex = /^[67]\d{8}$/;
+
     // Validación básica
     if (!horaSelect.value || !guestsSelect.value) {
-      alert('Si us plau, completa tots els camps');
+      showToast('Si us plau, completa tots els camps');
       return;
     }
-    
+    if (!phoneRegex.test(phoneValue)) {
+      showToast('El telèfon ha de començar per 6 o 7 i tenir 9 dígits', false);
+      phoneInput.focus();
+      return;
+    }
+
     const formData = new FormData(form);
-    
+
     try {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviant...';
-      
+
       const res = await fetch(API_URL, {
         method: 'POST',
         body: formData
       });
-      
+
       const result = await res.json();
-      
+
       if (result.success) {
-        alert('Reserva realitzada amb èxit!');
+        showToast('Reserva realitzada amb èxit!');
         form.reset();
         resetSelectors();
         afternoonCount.textContent = '23';
         nightCount.textContent = '23';
       } else {
-        alert(result.message || 'Error en la reserva');
+        showToast(result.message || 'Error en la reserva');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error de connexió');
+      showToast('Error de connexió');
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Reservar';
     }
   });
 });
+
+function showToast(message, success = true) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.style.backgroundColor = success ? '#28a745' : '#dc3545'; // verde o rojo
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+}
 
 
 
