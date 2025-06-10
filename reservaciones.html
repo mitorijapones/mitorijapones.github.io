@@ -125,50 +125,48 @@
                                 title="El número ha de tenir 9 dígits i començar per 6 o 7">
                         </div>
 
+                        <!-- Hora: -->
                         <div class="form-group">
-                            <label for="shift">Torn:</label>
-                            <select id="shift" name="shift" required>
-                                <option value>Selecciona un torn</option>
-                                <option value="afternoon">Tarda (13:30 -
-                                    15:00)</option>
-                                <option value="night">Nit (20:30 -
-                                    22:30)</option>
+                            <label for="hora">Hora:</label>
+                            <select id="hora" name="hora" required>
+                                <option value>Selecciona una hora</option>
                             </select>
                         </div>
-                    </div>
 
-                    <!-- Nombre de persones -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="guests">Nombre de persones:</label>
-                            <select id="guests" name="guests" required disabled>
-                                <option value>Selecciona un torn</option>
-                            </select>
+                        <!-- Nombre de persones -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">Nombre de persones:</label>
+                                <select id="guests" name="guests" required
+                                    disabled>
+                                    <option value>Selecciona un torn</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Comentaris -->
-                    <div class="form-group">
-                        <label for="comments">Comentaris addicionals:</label>
-                        <textarea id="comments" name="comments" rows="4"
-                            placeholder="Al·lèrgies, preferències, etc."></textarea>
-                    </div>
+                        <!-- Comentaris -->
+                        <div class="form-group">
+                            <label for="comments">Comentaris
+                                addicionals:</label>
+                            <textarea id="comments" name="comments" rows="4"
+                                placeholder="Al·lèrgies, preferències, etc."></textarea>
+                        </div>
 
-                    <!-- Missatges del sistema -->
-                    <div id="reservation-message"
-                        class="reservation-message"></div>
+                        <!-- Missatges del sistema -->
+                        <div id="reservation-message"
+                            class="reservation-message"></div>
 
-                    <!-- Botó -->
-                    <button type="submit" class="btn">Reservar</button>
-                </form>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2025 Restaurante Mitori. Todos los derechos
-                reservados.</p>
-        </footer>
+                        <!-- Botó -->
+                        <button type="submit" class="btn">Reservar</button>
+                    </form>
+                </section>
+            </main>
+            <footer>
+                <p>&copy; 2025 Restaurante Mitori. Todos los derechos
+                    reservados.</p>
+            </footer>
 
-        <script src="js/script.js"></script>
-        <div id="toast" class="toast"></div>
-    </body>
-</html>
+            <script src="js/script.js"></script>
+            <div id="toast" class="toast"></div>
+        </body>
+    </html>
