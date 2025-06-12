@@ -1,6 +1,17 @@
 /* =======================
    VARIABLES GLOBALES
 ========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
 :root {
     --primary-color: #5E5246;
     --secondary-color: #5E5246;
@@ -22,10 +33,12 @@ body {
     color: var(--text-color);
     background-color: #fff;
 }
+
 .hero-content {
     max-width: 700px;
     margin: 0 auto;
 }
+
 /* =======================
    HEADER & NAVIGATION
 ========================== */
@@ -124,12 +137,24 @@ nav ul li a.active {
         background: url('../img/LogoMitori.jpg') no-repeat center center/cover !important;
     }
 
+    .experience-section {
+        padding: 1rem;
+    }
+
     .experience-grid {
-        grid-template-columns: 1fr;
+         display: flex;
+    flex-direction: column;
+    align-items: center; /* centra las tarjetas horizontalmente */
+    gap: 2rem;
+    width: 100%;
+    max-width: 100%;
     }
 
     .experience-card {
-        margin: 0 1rem;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        
     }
 
     nav {
@@ -186,8 +211,11 @@ nav ul li a.active {
         padding: 1.5rem;
     }
 
-
+    .take-section {
+        padding: 1rem;
+    }
 }
+
 
 
 @media (min-width: 1600px) {
@@ -225,18 +253,10 @@ nav ul li a.active {
    MAIN CONTENT
 ========================== */
 main {
-    padding: 2rem 5vw;
+    padding: 2rem 1rem;
 }
 
-main > section:not(.about) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 /* Estilos para la sección de experiencias */
 .experience-section {
@@ -248,8 +268,12 @@ main > section:not(.about) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
+    /* ⬅ centra las tarjetas si hay una sola */
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem;
+    /* para evitar que se pegue al borde en móviles */
 }
 
 .experience-card {
