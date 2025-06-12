@@ -5,7 +5,7 @@
     --primary-color: #5E5246;
     --secondary-color: #5E5246;
     --accent-color: #e74c3c;
-    --text-color: #333;
+    --text-color: #000000;
     --light-bg: #f9f9f9;
     --white: #fff;
     --border-radius: 5px;
@@ -22,7 +22,10 @@ body {
     color: var(--text-color);
     background-color: #fff;
 }
-
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
 /* =======================
    HEADER & NAVIGATION
 ========================== */
@@ -187,6 +190,34 @@ nav ul li a.active {
 }
 
 
+@media (min-width: 1600px) {
+    .hero {
+        min-height: 90vh;
+    }
+
+    .experience-grid {
+        max-width: 1400px;
+        gap: 3rem;
+    }
+
+    .experience-card {
+        padding: 3rem;
+    }
+
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+    }
+}
+
 
 
 
@@ -194,7 +225,7 @@ nav ul li a.active {
    MAIN CONTENT
 ========================== */
 main {
-    padding: 20px;
+    padding: 2rem 5vw;
 }
 
 /* Estilos para la sección de experiencias */
