@@ -253,7 +253,7 @@ nav ul li a.active {
    MAIN CONTENT
 ========================== */
 main {
-    padding: 0rem 1rem;
+    padding: 2rem 1rem;
 }
 
 
@@ -564,7 +564,7 @@ footer p:last-child {
    MENÚ
 ========================== */
 .menu-category {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .menu-category h3,
