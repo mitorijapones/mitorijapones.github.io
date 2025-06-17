@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitori - Take Away</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sawarabi+Mincho&display=swap"
+      rel="stylesheet">
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    /* =======================
+           VARIABLES GLOBALES
+        ========================== */
+    :root {
+      --primary-color: #5E5246;
+      --secondary-color: #5E5246;
+      --accent-color: #e74c3c;
+      --text-color: #000000;
+      --light-bg: #f9f9f9;
+      --white: #fff;
+      --border-radius: 5px;
+      --border: #e0e0e0;
+    }
+
+    /* =======================
+           ESTILOS BASE
+        ========================== */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      background-color: #fff;
+    }
+
+    /* =======================
+           HEADER & NAVIGATION - CORREGIDO
+        ========================== */
+    header {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 70px;
+      width: 200px;
+      display: block;
+    }
+
+    nav {
+      display: block;
+      transform: translateX(0);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      display: block;
+      transition: background 0.3s;
+      border-radius: var(--border-radius);
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--secondary-color);
+    }
+
+    /* Menú hamburguesa oculto por defecto */
+    .menu-toggle {
+      display: none;
+      /* Oculto en desktop */
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--white);
+      margin: 5px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* =======================
+           MAIN CONTENT
+        ========================== */
+    main {
+      padding: 20px;
+    }
+
+   /* =======================
+   TAKE AWAY MENU STYLES - IMAGE STYLE
+   ========================== */
+.menu-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.menu-section h1 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.menu-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.cart-column {
+  width: 340px;
+}
+
+.section {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eee;
+}
+
+.section-title {
+  background: white;
+  color: var(--primary-color);
+  padding: 14px 18px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.section-title i {
+  transition: transform 0.3s ease;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+}
+
+.section-title span {
+  font-size: 1.3rem; /* Tamaño adicional para el texto */
+}
+
+.section.active .section-title i {
+  transform: rotate(180deg);
+}
+
+.menu-items {
+  display: none;
+  padding: 0;
+}
+
+.section.active .menu-items {
+  display: block;
+}
+
+/* ========================
+   ELEMENTOS DEL MENÚ - IMAGE STYLE
+   ========================== */
+.menu-item {
+    display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f0f0f0; /* Línea separadora */
+  margin-bottom: 0; /* Asegura que no haya espacio extra */
+}
+
+.menu-item:hover {
+  background: #f8f9fa;
+}
+
+.item-info {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.item-name {
+  font-weight: 400;
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+  color: #5E5246;
+}
+
+.item-description {
+  color: #000000;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--accent-color);
+  font-size: 1rem;
+  min-width: 60px;
+  text-align: right;
+}
+
+.add-to-cart {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 1px 4px rgba(231, 76, 60, 0.2);
+}
+
+.add-to-cart i {
+  font-size: 0.8rem;
+}
+
+.add-to-cart:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+/* ========================
+   CARRITO DE COMPRAS - IMAGE STYLE
+   ========================== */
+.cart-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid #eee;
+  position: sticky;
+  top: 15px;
+}
+
+.cart-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cart-items {
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.quantity-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.remove-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+.payment-method {
+  padding: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+  font-size: 1.05rem;
+}
+
+.payment-options {
+  display: flex;
+  gap: 12px;
+}
+
+.payment-option {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.payment-option.selected {
+  border-color: var(--accent-color);
+  background: rgba(231, 76, 60, 0.08);
+}
+
+.payment-option i {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+  color: var(--accent-color);
+}
+
+.order-form {
+  padding: 18px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 92%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.total-section {
+  padding: 18px;
+  background: #f8f9fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.total-price {
+  color: var(--accent-color);
+  font-size: 1.3rem;
+}
+
+.submit-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-btn:hover {
+  background: #c0392b;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.green-text {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Ajustes responsive */
+@media (max-width: 480px) {
+  .menu-item {
+    padding: 14px;
+  }
+  
+  .item-actions {
+    gap: 6px;
+  }
+  
+  .add-to-cart {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .item-price {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ======================= RESTRICCIONES DE HORARIO ========================== */
+        .closed-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        
+        .closed-overlay h2 {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .closed-overlay p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .closed-overlay .calendar {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .closed-overlay .day {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .closed-overlay .closed-day {
+            background-color: #e74c3c;
+        }
+        
+        .closed-overlay .open-hours {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 500px;
+        }
+        
+        .closed-overlay .contact-info {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .closed-message {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 4px;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .closed-message h3 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+        
+        .disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+    /* =======================
+           FOOTER
+        ========================== */
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem 1rem;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer p a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom 0.3s ease;
+    }
+
+    footer p a:hover {
+      border-bottom: 1px solid var(--white);
+    }
+
+    footer .copyright,
+    footer p:last-child {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #bdc3c7;
+    }
+
+    /* =======================
+           TOAST
+        ========================== */
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #27ae60;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .toast.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =======================
+           RESPONSIVE - CORREGIDO
+        ========================== */
+    @media (max-width: 900px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .cart-column {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        position: relative;
+        z-index: 1001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: var(--primary-color);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        padding-top: 4rem;
+        overflow-y: auto;
+      }
+
+      nav.active {
+        transform: translateX(0);
+      }
+
+      /* Mostrar menú hamburguesa solo en móvil */
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1100;
+      }
+
+      nav ul {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        width: 100%;
+        text-align: left;
+        padding-left: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      nav ul li a {
+        display: block;
+        padding: 1rem 0;
+        color: var(--white);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-actions {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .add-to-cart {
+    margin-left: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
+
+  .item-price {
+    font-size: 1rem;
+  }
+}
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .menu-section h1,
+    .section-title,
+    .cart-header,
+    
+    
+    .submit-btn {
+      font-family: 'Dancing Script', cursive;
+    }
+  </style>
+  </head>
+
+  <body class="bg-gray-100 text-gray-900">
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo.png" alt="Logo de Mitori">
+        </a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Obrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html">Inici</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="reservaciones.html">Reservacions</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="menu-section">
+        <h1>Take Away</h1>
+        <div id="closedMessage" class="closed-message" style="display: none;">
+          <h3 id="closedMessageTitle">Avís: Servei no disponible</h3>
+          <p id="closedMessageText">El nostre servei de take away no està
+            disponible en aquest moment.</p>
+        </div>
+      </section>
+
+      <div class="container">
+        <div class="main-content">
+          <div class="menu-column">
+            <div class="section">
+              <div class="section-title">
+                <span>Entrants 🥟</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Gyozes d'ànec (4 peces) </div>
+                    <div class="item-description">Empanadilles japoneses
+                      empanades amb panko,
+                      amb salsa teriyaki de taronja.
+                    </div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">7,20 €</div>
+                    <button class="add-to-cart" data-name="Gyozes d'ànec"
+                      data-price="7.20">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Gyozes de pollastre (4 peces) </div>
+                    <div class="item-description">Empanadilles japoneses
+                      fregides amb emulsió de salsa anticuchera.
+                    </div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">6,90 €</div>
+                    <button class="add-to-cart" data-name="Gyozes de pollastre"
+                      data-price="6.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Gyozes de verdures (4 peces) </div>
+                    <div class="item-description">Empanadilles japoneses al
+                      vapor amb salsa de porc.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">5,90 €</div>
+                    <button class="add-to-cart" data-name="Gyozes de verdures"
+                      data-price="5.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Edamame picant</div>
+                    <div class="item-description">Vaines de soja verdes amb
+                      salsa picant</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">5,40 €</div>
+                    <button class="add-to-cart" data-name="Edamame picant"
+                      data-price="5.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Edamame trufat</div>
+                    <div class="item-description">Vaines de soja verdes amb toc
+                      de tòfona</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">5,50 €</div>
+                    <button class="add-to-cart" data-name="Edamame trufat"
+                      data-price="5.50">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Yakisobas 🍜</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakisoba de vedella</div>
+                    <div class="item-description">Amb barreja de verdures i daus
+                      de vedella</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,90 €</div>
+                    <button class="add-to-cart" data-name="Yakisoba de vedella"
+                      data-price="11.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakisoba de pollastre cruixent</div>
+                    <div class="item-description">Pollastre empanat amb panko,
+                      barreja de verdures i bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">12,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Yakisoba de pollastre"
+                      data-price="12.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakisoba de llagosta</div>
+                    <div class="item-description">Cues de llagostí amb barreja
+                      de verdures i bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">12,90 €</div>
+                    <button class="add-to-cart" data-name="Yakisoba de llagosta"
+                      data-price="12.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakisoba de verdures</div>
+                    <div class="item-description">Amb barreja de verdures i
+                      bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">10,10 €</div>
+                    <button class="add-to-cart" data-name="Yakisoba de verdures"
+                      data-price="10.10">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Yakimeshis 🍚</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakimeshi de pollastre cruixent
+                    </div>
+                    <div class="item-description">Pollastre empanat amb panko,
+                      barreja de
+                      verdures i bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Yakimeshi de pollastre cruixent"
+                      data-price="11.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakimeshi de llagosta</div>
+                    <div class="item-description">Cues de llagostí amb barreja
+                      de verdures i bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Yakisoba de pollastre"
+                      data-price="11.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakimeshi de vedella </div>
+                    <div class="item-description">Amb barreja de verdures i daus
+                      de vedella.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,50 €</div>
+                    <button class="add-to-cart" data-name="Yakisoba de llagosta"
+                      data-price="12.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Yakimeshi de verdures</div>
+                    <div class="item-description">Amb barreja de verdures i
+                      bolets.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">10,10 €</div>
+                    <button class="add-to-cart"
+                      data-name="Yakimeshi de verdures"
+                      data-price="10.10">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Sashimi 🍣</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Peix blanc (6 peces)</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,20 €</div>
+                    <button class="add-to-cart"
+                      data-name="Sashimi de peix blanc"
+                      data-price="11.20">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Tonyina (6 peces)</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">12,20 €</div>
+                    <button class="add-to-cart" data-name="Sashimi de tonyina"
+                      data-price="12.20">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Salmó (6 peces)</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,20 €</div>
+                    <button class="add-to-cart" data-name="Sashimi de salmó"
+                      data-price="11.20">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Variat de sashimi (9 peces)</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">16,00 €</div>
+                    <button class="add-to-cart" data-name="Variat de sashimi "
+                      data-price="16.00">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="section">
+                  <div class="section-title">
+                    <span>BAOS</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <div class="menu-items">
+                    <div class="menu-item">
+                      <div class="item-info">
+                        <div class="item-name">Bao de crancs</div>
+                        <div class="item-description">Cranc de closca tova amb
+                          salsa cevichada.</div>
+                      </div>
+                      <div class="item-actions">
+                        <div class="item-price">11,50 €</div>
+                        <button class="add-to-cart" data-name="Bao de crancs"
+                          data-price="11.50">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="menu-item">
+                      <div class="item-info">
+                        <div class="item-name">Bao de pollastre</div>
+                        <div class="item-description">Pollastre empanat amb
+                          panko,
+                          ceba confitada i maionesa japonesa.</div>
+                      </div>
+                      <div class="item-actions">
+                        <div class="item-price">10,00 €</div>
+                        <button class="add-to-cart" data-name="Bao de pollastre"
+                          data-price="10.00">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Nigiris Fusió 🍣</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Nigiri de peix blanc acevichat (2
+                      peces)</div>
+                    <div class="item-description">Nigiri de peix blanc amb salsa
+                      cevitxera i moniato fregit.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">6,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Nigiri de peix blanc acevichat"
+                      data-price="6.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Nigiri de tòfona (2 peces)</div>
+                    <div class="item-description">Amb cítrics de kimchi i
+                      làmines de tòfona.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">7,40 €</div>
+                    <button class="add-to-cart" data-name="Nigiri de tòfona"
+                      data-price="7.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Anguila fetge (2 peces)</div>
+                    <div class="item-description">Anguila amb fetge
+                      caramel·litzat i teriyaki de taronja.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">8,50 €</div>
+                    <button class="add-to-cart" data-name="Nigiri anguila fetge"
+                      data-price="8.50">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Salmó teriyaki (2 peces)</div>
+                    <div class="item-description">Flambejat amb teriyaki de
+                      taronja.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">6,40 €</div>
+                    <button class="add-to-cart"
+                      data-name="Nigiri de Salmó teriyaki" data-price="6.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Variat de nigiris (6 peces)</div>
+                    <div class="item-description">Una barreja de diversos
+                      nigiris de la carta.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">15,90 €</div>
+                    <button class="add-to-cart" data-name="Variat nigiris"
+                      data-price="15.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="section">
+                  <div class="section-title">
+                    <span>Nigiris Tradicionals 🍣</span>
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                  <div class="menu-items">
+                    <div class="menu-item">
+                      <div class="item-info">
+                        <div class="item-name">Nigiri de peix blanc (2
+                          peces)</div>
+                        <div class="item-description">Peix blanc fresc sobre
+                          arròs
+                          per a sushi</div>
+                      </div>
+                      <div class="item-actions">
+                        <div class="item-price">6,50 €</div>
+                        <button class="add-to-cart"
+                          data-name="Nigiri de peix blanc" data-price="6.50">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="menu-item">
+                      <div class="item-info">
+                        <div class="item-name">Nigiri de tonyina (2 peces)</div>
+                        <div class="item-description">Tonyina fresca sobre arròs
+                          per a sushi .</div>
+                      </div>
+                      <div class="item-actions">
+                        <div class="item-price">6,90 €</div>
+                        <button class="add-to-cart" data-name="Nigiri de tòfona"
+                          data-price="6.90">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="menu-item">
+                      <div class="item-info">
+                        <div class="item-name">Nigiri de salmó (2 peces)</div>
+                        <div class="item-description">Salmó fresc sobre arròs
+                          per a sushi .</div>
+
+                      </div>
+                      <div class="item-actions">
+                        <div class="item-price">5,90 €</div>
+                        <button class="add-to-cart"
+                          data-name="Nigiri de anguila fetge" data-price="5.90">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Uramakis 🍣</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Anticuchero (8 peces) </div>
+                    <div class="item-description">Farci de llagostí empanat i
+                      alvocat,
+                      cobert amb làmines de peix blanc i salsa </div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">13,60 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de anticuchero"
+                      data-price="13.60">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Acevichat (8 peces) </div>
+                    <div class="item-description">Farci de tartar de salmó i
+                      alvocat, cobert amb làmines de tonyina,
+                      salsa cevitxera i moniato fregit.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">13,40 €</div>
+                    <button class="add-to-cart" data-name="Uramaki de acevichat"
+                      data-price="13.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Miso tuna (8 peces) </div>
+                    <div class="item-description">Farci de bolets i alvocat,
+                      amb tartar de tonyina en salsa de miso.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">14,40 €</div>
+                    <button class="add-to-cart" data-name="Uramaki de miso tuna"
+                      data-price="14.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Salmó kimchi (8 peces) </div>
+                    <div class="item-description">Farci de bolets i alvocat, amb
+                      tartar de salmó en cítrics de kimchi.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">13,40 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="13.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Tonyina fetge (8 peces) </div>
+                    <div class="item-description">Farci de llagostí empanat i
+                      alvocat,
+                      làmines de tonyina amb fetge caramel·litzat i
+                      teriyaki.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">14,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="14.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Uramaki fetge micuit (8 peces) </div>
+                    <div class="item-description">Fetge micuit, alvocat, làmines
+                      de maduixa i ceba caramel·litzada.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">13,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="13.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Trufat opció vegana (8 peces) </div>
+                    <div class="item-description">Farci de bolets i alvocat amb
+                      toc de tòfona.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">11,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="11.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mitori (8 peces) </div>
+                    <div class="item-description">Llagostí empanat, alvocat,
+                      làmines de salmó,
+                      emulsió trufada i salsa teriyaki.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">12,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="13.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Uramaki de Surimi (8 peces) </div>
+                    <div class="item-description">Pasta de surimi, alvocat,
+                      maionesa trufada i llimona ratllada.</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">13,40 €</div>
+                    <button class="add-to-cart"
+                      data-name="Uramaki de salmó kimchi" data-price="13.40">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Hossomakis 🍙</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Tempuritzat tanoshi (8 peces) </div>
+                    <div class="item-description">Hossomaki d'alvocat
+                      tempuritzat amb panko, tartar de salmó i cítrics de
+                      kimchi.
+
+                    </div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">10,90 €</div>
+                    <button class="add-to-cart"
+                      data-name="Hossomakis tempuritzat tanoshi"
+                      data-price="10.90">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Maki de tonyina (8 peces) </div>
+                    <div class="item-description">Maki amb farciment de
+                      tonyina</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">8,50 €</div>
+                    <button class="add-to-cart" data-name="Maki de tonyina"
+                      data-price="8.50">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Maki de salmó (8 peces) </div>
+                    <div class="item-description">Maki amb farciment de
+                      salmó</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">7,50 €</div>
+                    <button class="add-to-cart" data-name="Maki de salmó"
+                      data-price="7.50">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Maki d' alvocat (8 peces) </div>
+                    <div class="item-description">Maki amb farciment d'
+                      alvocat</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">5,50 €</div>
+                    <button class="add-to-cart" data-name="Maki de salmó"
+                      data-price="5.50">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="section-title">
+                <span>Postres 🍡</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="menu-items">
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mochi de mango i passiflora</div>
+                    <div class="item-description">Mochi farcit amb crema de
+                      mango i passiflora</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">4,00 €</div>
+                    <button class="add-to-cart"
+                      data-name="Mochi de mango i passiflora" data-price="4.00">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mochi de matcha</div>
+                    <div class="item-description">Mochi amb farciment de crema
+                      de te verd</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">4,00 €</div>
+                    <button class="add-to-cart" data-name="Mochi de matcha"
+                      data-price="4.00">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mochi de cheesecake</div>
+                    <div class="item-description">Mochi amb farciment de crema
+                      de formatge</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">4,00 €</div>
+                    <button class="add-to-cart" data-name="Mochi de cheesecake"
+                      data-price="4.00">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mochi de Sakura</div>
+                    <div class="item-description">Mochi amb farciment de crema
+                      de sakura</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">4,00 €</div>
+                    <button class="add-to-cart" data-name="Mochi de cheesecake"
+                      data-price="4.00">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-item">
+                  <div class="item-info">
+                    <div class="item-name">Mochi de oreo</div>
+                    <div class="item-description">Mochi amb farciment de crema
+                      de oreo</div>
+                  </div>
+                  <div class="item-actions">
+                    <div class="item-price">4,20 €</div>
+                    <button class="add-to-cart" data-name="Mochi de cheesecake"
+                      data-price="4.20">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-column">
+            <div class="cart-container">
+              <div class="cart-header">
+                Resum comanda
+              </div>
+
+              <div class="cart-items" id="orderItems">
+                <div class="empty-cart">
+                  <i class="fas fa-shopping-cart"
+                    style="font-size: 3rem; opacity: 0.3; margin-bottom: 15px;"></i>
+                  <p>La teva comanda està buida</p>
+                  <p class="green-text">Afegeix productes per començar</p>
+                </div>
+              </div>
+
+              <div class="payment-method">
+                <div class="payment-title">Mètode de pagament:</div>
+                <div class="payment-options">
+                  <div class="payment-option selected" id="payInStore">
+                    <i class="fas fa-store"></i>
+                    <div>Pagament al local</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- FORMULARIO PARA FORMSPREE -->
+              <form id="orderForm" action="https://formspree.io/f/mpwdbjoy"
+                method="POST">
+                <div class="order-form">
+                  <div class="form-group">
+                    <label for="name">Nom:</label>
+                    <input type="text" id="name" name="name"
+                      class="form-control" placeholder="Nom complet" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">Telèfon:</label>
+                    <input type="tel" id="phone" name="phone"
+                      class="form-control" placeholder="Número de telèfon"
+                      required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="notes">Notes addicionals:</label>
+                    <textarea id="notes" name="notes" class="form-control"
+                      rows="2"
+                      placeholder="Al·lèrgies, instruccions especials..."></textarea>
+                  </div>
+                </div>
+
+                <div class="total-section">
+                  <div>Total:</div>
+                  <div class="total-price" id="totalPrice">0,00 €</div>
+                </div>
+
+                <div class="order-form" style="padding-top: 0;">
+                  <button type="submit" class="submit-btn" id="submitOrder">
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar comanda
+                  </button>
+                </div>
+
+                <!-- Campos ocultos para enviar los detalles del pedido -->
+                <input type="hidden" id="orderDetails" name="orderDetails">
+                <input type="hidden" id="orderTotal" name="orderTotal">
+              </form>
+            </div>
+          </div>
+
+        </main>
+        <!-- Overlay para días cerrados -->
+        <div id="closedOverlay" class="closed-overlay" style="display: none;">
+          <h2 id="overlayTitle">Avui estem tancats</h2>
+          <p id="overlayText">El nostre servei de take away no està disponible
+            en aquest moment.</p>
+
+          <div class="calendar">
+            <div class="day">Dg</div>
+            <div class="day closed-day">Dl</div>
+            <div class="day closed-day">Dt</div>
+            <div class="day">Dc</div>
+            <div class="day">Dj</div>
+            <div class="day">Dv</div>
+            <div class="day">Ds</div>
+          </div>
+
+          <div class="open-hours">
+            <p><strong>Horari de servei:</strong></p>
+            <p>Dimecres a Diumenge</p>
+            <p>13:30 - 15:00 &nbsp;&nbsp;|&nbsp;&nbsp; 20:30 - 23:00</p>
+          </div>
+
+          <div class="contact-info">
+            <p>Telèfon: 623 70 32 82</p>
+
+          <p>Adreça: Passeig del Compositor Beethoven, 3, 25230
+            Mollerussa, Lleida</p>
+
+      </div>
+    </div>
+
+    <!-- TOAST DE CONFIRMACIÓN -->
+    <div class="toast" id="confirmationToast">
+      <i class="fas fa-check-circle"></i>
+      <div>Comanda enviada amb èxit!</div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
+    </footer>
+     <script>
+        // Toggle del menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        }
+
+        // Acordeones para las secciones del menú
+        document.querySelectorAll('.section-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const section = title.parentElement;
+                section.classList.toggle('active');
+            });
+        });
+
+        // Carrito de compras
+        let cart = [];
+        const orderItemsEl = document.getElementById('orderItems');
+        const totalPriceEl = document.getElementById('totalPrice');
+        const submitBtn = document.getElementById('submitOrder');
+
+        // Función para añadir productos al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+
+                // Verificar si el producto ya está en el carrito
+                const existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({
+                        name: name,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+
+                updateCart();
+
+                // Animación de confirmación
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-plus"></i>';
+                }, 1000);
+            });
+        });
+
+        // Actualizar el carrito
+        function updateCart() {
+            // Limpiar el carrito
+            orderItemsEl.innerHTML = '';
+
+            if (cart.length === 0) {
+                orderItemsEl.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; opacity: 0.3; margin-bottom: 15px;"></i>
+                        <p>La teva comanda està buida</p>
+                        <p class="green-text">Afegeix productes per començar</p>
+                    </div>
+                `;
+                totalPriceEl.textContent = '0,00 €';
+                return;
+            }
+
+            // Calcular el total
+            let total = 0;
+
+            // Añadir cada elemento al carrito
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-quantity">
+                            <button class="quantity-btn decrease" data-name="${item.name}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase" data-name="${item.name}">+</button>
+                            <button class="remove-btn" data-name="${item.name}">Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="item-price">${itemTotal.toFixed(2)} €</div>
+                `;
+
+                orderItemsEl.appendChild(itemEl);
+            });
+
+            // Actualizar el total
+            totalPriceEl.textContent = total.toFixed(2) + ' €';
+
+            // Añadir eventos para los botones de cantidad y eliminar
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.getAttribute('data-name');
+                    const item = cart.find(item => item.name === name);
+
+                    if (item.quantity > 1) {
+                        item.quantity--;
+                    } else {
+                        cart = cart.filter(item => item.name !== name);
+                    }
+
+                    updateCart();
+                });
+            });
+
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.getAttribute('data-name');
+                    const item = cart.find(item => item.name === name);
+                    item.quantity++;
+                    updateCart();
+                });
+            });
+
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.getAttribute('data-name');
+                    cart = cart.filter(item => item.name !== name);
+                    updateCart();
+                });
+            });
+        }
+
+        // Función para mostrar el toast de confirmación
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('confirmationToast');
+            const toastIcon = toast.querySelector('i');
+            const toastMessage = toast.querySelector('div:nth-child(2)');
+
+            // Configurar según el tipo de mensaje
+            if (isSuccess) {
+                toast.style.backgroundColor = '#27ae60';
+                toastIcon.className = 'fas fa-check-circle';
+            } else {
+                toast.style.backgroundColor = '#e74c3c';
+                toastIcon.className = 'fas fa-exclamation-circle';
+            }
+
+            toastMessage.textContent = message;
+            toast.classList.add('active');
+
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+          // Función para verificar horario de servicio - COMPLETAMENTE REVISADA
+    function checkServiceHours() {
+        const now = new Date();
+        const day = now.getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes...
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const currentTime = hours * 60 + minutes;
+        
+        // Horarios en minutos desde medianoche
+        const lunchStart = 13 * 60 + 30;  // 13:30
+        const lunchEnd = 15 * 60;         // 15:00
+        const dinnerStart = 20 * 60 + 30; // 20:30
+        const dinnerEnd = 23 * 60;        // 23:00
+        
+        // 1. Comprobar si es lunes o martes (cerrado todo el día)
+        if (day === 1 || day === 2) {
+            return {
+                open: false,
+                message: "Avui estem tancats. Tornem a obrir dimecres a les 13:30.",
+                title: "Tancat els dilluns i dimarts"
+            };
+        }
+        
+        // 2. Comprobar horario de comida (13:30-15:00)
+        if (currentTime >= lunchStart && currentTime <= lunchEnd) {
+            return { open: true };
+        }
+        
+        // 3. Comprobar horario de cena (20:30-23:00)
+        if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
+            return { open: true };
+        }
+        
+        // 4. Fuera de horario - determinar próximo servicio
+        let nextServiceTime = "";
+        let nextServiceDay = "";
+        
+        // Si es domingo por la noche
+        if (day === 0 && currentTime > dinnerEnd) {
+            return {
+                open: false,
+                message: "Tornem a obrir dimecres a les 13:30.",
+                title: "Fora d'horari"
+            };
+        }
+        
+        // Si es antes del almuerzo
+        if (currentTime < lunchStart) {
+            nextServiceTime = "13:30";
+            nextServiceDay = "avui";
+        } 
+        // Si es después del almuerzo y antes de la cena
+        else if (currentTime < dinnerStart) {
+            nextServiceTime = "20:30";
+            nextServiceDay = "avui";
+        }
+        // Si es después de la cena (y no es domingo)
+        else {
+            nextServiceTime = "13:30";
+            nextServiceDay = "demà";
+            
+            // Si es sábado por la noche, el próximo es miércoles
+            if (day === 6) {
+                nextServiceDay = "dimecres";
+            }
+        }
+        
+        return {
+            open: false,
+            message: `El nostre servei de take away està tancat. Tornem a obrir ${nextServiceDay} a les ${nextServiceTime}.`,
+            title: "Fora d'horari"
+        };
+    }
+
+    // Función para deshabilitar el sistema de pedidos - MEJORADA
+    function disableOrderSystem(reason) {
+        // 1. Mostrar mensaje de cerrado
+        const closedMessage = document.getElementById('closedMessage');
+        if (closedMessage) {
+            closedMessage.style.display = 'block';
+            document.getElementById('closedMessageTitle').textContent = reason.title;
+            document.getElementById('closedMessageText').textContent = reason.message;
+        }
+        
+        // 2. Mostrar overlay de cerrado
+        const overlay = document.getElementById('closedOverlay');
+        if (overlay) {
+            overlay.style.display = 'flex';
+            document.getElementById('overlayTitle').textContent = reason.title;
+            document.getElementById('overlayText').textContent = reason.message;
+        }
+        
+        // 3. Deshabilitar todos los botones de añadir al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.disabled = true;
+            button.classList.add('disabled');
+        });
+        
+        // 4. Deshabilitar botón de enviar pedido
+        const submitBtn = document.getElementById('submitOrder');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('disabled');
+        }
+        
+        // 5. Deshabilitar secciones del menú
+        document.querySelectorAll('.section-title').forEach(title => {
+            title.style.pointerEvents = 'none';
+            title.style.cursor = 'default';
+            title.classList.add('disabled');
+        });
+    }
+
+        // Manejar el envío del formulario a Formspree
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                showToast('Si us plau, afegeix productes a la teva comanda', false);
+                return;
+            }
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !phone) {
+                showToast('Si us plau, omple el teu nom i telèfon', false);
+                return;
+            }
+
+            // Preparar detalles del pedido en formato texto
+            let orderDetails = `Comanda de: ${name}\nTelèfon: ${phone}\n\nDetalls:\n`;
+            cart.forEach(item => {
+                orderDetails += `${item.quantity}x ${item.name} - ${(item.price * item.quantity).toFixed(2)}€\n`;
+            });
+            orderDetails += `\nTOTAL: ${document.getElementById('totalPrice').textContent}`;
+
+            // Crear datos para Formspree
+            const formData = new URLSearchParams();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('notes', document.getElementById('notes').value);
+            formData.append('orderDetails', orderDetails);
+            formData.append('orderTotal', document.getElementById('totalPrice').textContent);
+
+            // Enviar usando application/x-www-form-urlencoded
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        showToast('Comanda enviada amb èxit!');
+                        cart = [];
+                        updateCart();
+                        this.reset();
+                    } else {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showToast("Error d'enviament. Si us plau, prova més tard", false);
+                });
+        });
+
+        // Al cargar la página, verificar horario de servicio
+    document.addEventListener('DOMContentLoaded', function() {
+        // Comprobar horario de servicio
+        const serviceStatus = checkServiceHours();
+        
+        console.log("Estado del servicio:", serviceStatus);
+        
+        if (!serviceStatus.open) {
+            disableOrderSystem({
+                title: serviceStatus.title,
+                message: serviceStatus.message
+            });
+        }
+            
+            // Inicializar el carrito
+            updateCart();
+        });
+    </script>
+</body>
+</html>
