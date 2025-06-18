@@ -1844,10 +1844,10 @@
         const currentTime = hours * 60 + minutes;
         
         // Horarios en minutos desde medianoche
-        const lunchStart = 13 * 60 + 30;  // 13:30
-        const lunchEnd = 15 * 60;         // 15:00
-        const dinnerStart = 20 * 60 + 30; // 20:30
-        const dinnerEnd = 23 * 60;        // 23:00
+        const lunchStart = 13 * 60;  // 13:30
+        const lunchEnd = 15 * 60 + 15;         // 15:00
+        const dinnerStart = 20 * 60; // 20:30
+        const dinnerEnd = 23 * 60 + 15;        // 23:00
         
         // 1. Comprobar si es lunes o martes (cerrado todo el día)
         if (day === 1 || day === 2) {
