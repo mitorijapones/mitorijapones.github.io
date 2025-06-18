@@ -7,6 +7,14 @@
     <title>Mitori - Take Away</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+      href="img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+      href="img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+      href="img/icons/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/site.webmanifest">
     <link
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sawarabi+Mincho&display=swap"
       rel="stylesheet">
@@ -1649,22 +1657,27 @@
           <div class="contact-info">
             <p>Telèfon: 623 70 32 82</p>
 
-          <p>Adreça: Passeig del Compositor Beethoven, 3, 25230
-            Mollerussa, Lleida</p>
+            <p>Adreça: Passeig del Compositor Beethoven, 3, 25230
+              Mollerussa, Lleida</p>
 
-      </div>
-    </div>
+          </div>
+        </div>
 
-    <!-- TOAST DE CONFIRMACIÓN -->
-    <div class="toast" id="confirmationToast">
-      <i class="fas fa-check-circle"></i>
-      <div>Comanda enviada amb èxit!</div>
-    </div>
+        <!-- TOAST DE CONFIRMACIÓN -->
+        <div class="toast" id="confirmationToast">
+          <i class="fas fa-check-circle"></i>
+          <div>Comanda enviada amb èxit!</div>
+        </div>
 
-    <footer>
-      <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
-    </footer>
-     <script>
+        <footer>
+          <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
+        </footer>
+        <script>
+      function getSpainTime() {
+    const now = new Date();
+    return new Date(now.toLocaleString("en-US", { timeZone: "Europe/Madrid" }));
+}
+
         // Toggle del menú móvil
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
@@ -1824,7 +1837,7 @@
 
           // Función para verificar horario de servicio - COMPLETAMENTE REVISADA
     function checkServiceHours() {
-        const now = new Date();
+        const now = getSpainTime();
         const day = now.getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes...
         const hours = now.getHours();
         const minutes = now.getMinutes();
@@ -1896,7 +1909,44 @@
         };
     }
 
- 
+    // Función para deshabilitar el sistema de pedidos - MEJORADA
+    function disableOrderSystem(reason) {
+        // 1. Mostrar mensaje de cerrado
+        const closedMessage = document.getElementById('closedMessage');
+        if (closedMessage) {
+            closedMessage.style.display = 'block';
+            document.getElementById('closedMessageTitle').textContent = reason.title;
+            document.getElementById('closedMessageText').textContent = reason.message;
+        }
+        
+        // 2. Mostrar overlay de cerrado
+        const overlay = document.getElementById('closedOverlay');
+        if (overlay) {
+            overlay.style.display = 'flex';
+            document.getElementById('overlayTitle').textContent = reason.title;
+            document.getElementById('overlayText').textContent = reason.message;
+        }
+        
+        // 3. Deshabilitar todos los botones de añadir al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.disabled = true;
+            button.classList.add('disabled');
+        });
+        
+        // 4. Deshabilitar botón de enviar pedido
+        const submitBtn = document.getElementById('submitOrder');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('disabled');
+        }
+        
+        // 5. Deshabilitar secciones del menú
+        document.querySelectorAll('.section-title').forEach(title => {
+            title.style.pointerEvents = 'none';
+            title.style.cursor = 'default';
+            title.classList.add('disabled');
+        });
+    }
 
         // Manejar el envío del formulario a Formspree
         document.getElementById('orderForm').addEventListener('submit', function (e) {
@@ -1973,5 +2023,5 @@
             updateCart();
         });
     </script>
-</body>
-</html>
+      </body>
+    </html>
