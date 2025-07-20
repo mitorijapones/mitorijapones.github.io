@@ -1964,43 +1964,7 @@
     }
 
     // Función para deshabilitar el sistema de pedidos - MEJORADA
-    function disableOrderSystem(reason) {
-        // 1. Mostrar mensaje de cerrado
-        const closedMessage = document.getElementById('closedMessage');
-        if (closedMessage) {
-            closedMessage.style.display = 'block';
-            document.getElementById('closedMessageTitle').textContent = reason.title;
-            document.getElementById('closedMessageText').textContent = reason.message;
-        }
-        
-        // 2. Mostrar overlay de cerrado
-        const overlay = document.getElementById('closedOverlay');
-        if (overlay) {
-            overlay.style.display = 'flex';
-            document.getElementById('overlayTitle').textContent = reason.title;
-            document.getElementById('overlayText').textContent = reason.message;
-        }
-        
-        // 3. Deshabilitar todos los botones de añadir al carrito
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.disabled = true;
-            button.classList.add('disabled');
-        });
-        
-        // 4. Deshabilitar botón de enviar pedido
-        const submitBtn = document.getElementById('submitOrder');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('disabled');
-        }
-        
-        // 5. Deshabilitar secciones del menú
-        document.querySelectorAll('.section-title').forEach(title => {
-            title.style.pointerEvents = 'none';
-            title.style.cursor = 'default';
-            title.classList.add('disabled');
-        });
-    }
+    
 
         // Manejar el envío del formulario a Formspree
         document.getElementById('orderForm').addEventListener('submit', function (e) {
