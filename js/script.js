@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('reservationForm');
-  const API_URL = 'https://script.google.com/macros/s/AKfycbyKvLymEExDwcEr37Zp_3gTit6FLsYpwlUy4KICv20OIrWmStozSwBZ8UPy8RwrlUD6/exec';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbyjaRQs2D9lwebdi8ToAnuh_qFQaveYoEi9eOZIhAd5Yhs_hI6RhEcBskxucW-o9eqE1A/exec';
 
   // Elementos UI
   const afternoonCount = document.getElementById('afternoon-count');
