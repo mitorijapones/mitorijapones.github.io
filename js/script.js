@@ -59,31 +59,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateTimeOptions(afternoon, night) {
-    const times = {
-      afternoon: ["13:30", "14:00", "14:30", "15:00"],
-      night: ["20:30", "21:00", "21:30", "22:00", "22:30"]
-    };
+  const times = {
+    afternoon: ["13:30", "14:00", "14:30", "15:00"],
+    night: ["20:30", "21:00", "21:30", "22:00", "22:30"]
+  };
 
-    resetSelectors();
+  resetSelectors();
 
-    if (afternoon > 0) {
-      times.afternoon.forEach(time => {
-        const option = new Option(`Tarda - ${time} (${afternoon} llocs)`, time);
-        horaSelect.add(option);
-      });
-    }
-
-    if (night > 0) {
-      times.night.forEach(time => {
-        const option = new Option(`Nit - ${time} (${night} llocs)`, time);
-        horaSelect.add(option);
-      });
-    }
-
-    if (horaSelect.options.length === 1) {
-      horaSelect.innerHTML = '<option value="">Sense horaris disponibles</option>';
-    }
+  if (afternoon > 0) {
+    times.afternoon.forEach(time => {
+      const option = new Option(`Tarda - ${time}`, time);
+      horaSelect.add(option);
+    });
   }
+
+  if (night > 0) {
+    times.night.forEach(time => {
+      const option = new Option(`Nit - ${time}`, time);
+      horaSelect.add(option);
+    });
+  }
+
+  if (horaSelect.options.length === 1) {
+    horaSelect.innerHTML = '<option value="">Sense horaris disponibles</option>';
+  }
+}
 
   horaSelect.addEventListener('change', () => {
     const time = horaSelect.value;
