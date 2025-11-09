@@ -1938,79 +1938,122 @@
             }, 3000);
         }
 
-          // Función para verificar horario de servicio - COMPLETAMENTE REVISADA
-    function checkServiceHours() {
-        const now = getSpainTime();
-        const day = now.getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes...
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const currentTime = hours * 60 + minutes;
-        
-        // Horarios en minutos desde medianoche
-        const lunchStart = 12 * 60;  // 12:00
-        const lunchEnd = 15 * 60 + 30;         // 15:30
-        const dinnerStart = 19 * 60; // 19:00
-        const dinnerEnd = 23 * 60 + 10;        // 23:10
-        
-        // 1. Comprobar si es lunes o martes (cerrado todo el día)
-        if (day === 1 || day === 2) {
-            return {
-                open: false,
-                message: "Avui estem tancats. Tornem a obrir dimecres a les 13:30.",
-                title: "Tancat els dilluns i dimarts"
-            };
-        }
-        
-        // 2. Comprobar horario de comida (13:30-15:00)
-        if (currentTime >= lunchStart && currentTime <= lunchEnd) {
-            return { open: true };
-        }
-        
-        // 3. Comprobar horario de cena (20:30-23:00)
+          // Función para verificar horario de servicio - ACTUALIZADA
+function checkServiceHours() {
+    const now = getSpainTime();
+    const day = now.getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes...
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const currentTime = hours * 60 + minutes;
+    
+    // Horarios en minutos desde medianoche
+    // Los horarios se han ajustado para ser inclusivos al inicio y final del servicio.
+    const lunchStart = 12 * 60; // 12:00
+    const lunchEnd = 15 * 60 + 30; // 15:30
+    
+    const dinnerStart = 20 * 60 + 30; // 20:30
+    const dinnerEnd = 23 * 60; // 23:00
+    
+    // 1. Comprobar si es Lunes (cerrado todo el día)
+    if (day === 1) {
+        return {
+            open: false,
+            message: "Avui estem tancats. Tornem a obrir demà (dimarts) a les 20:30.",
+            title: "Tancat el dilluns"
+        };
+    }
+    
+    // 2. Comprobar si es Martes (solo abierto por la noche)
+    if (day === 2) {
+        // Horario de cena del martes (20:30 - 23:00)
         if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
             return { open: true };
         }
         
-        // 4. Fuera de horario - determinar próximo servicio
+        // Fuera de horario del martes
         let nextServiceTime = "";
-        let nextServiceDay = "";
-        
-        // Si es domingo por la noche
-        if (day === 0 && currentTime > dinnerEnd) {
+        if (currentTime < dinnerStart) {
+            // Antes de la cena
+            nextServiceTime = "20:30";
             return {
                 open: false,
-                message: "Tornem a obrir dimecres a les 13:30.",
+                message: `El nostre servei de take away està tancat. Tornem a obrir avui a les ${nextServiceTime}.`,
+                title: "Fora d'horari"
+            };
+        } else {
+            // Después de la cena del martes, el próximo es el miércoles a las 20:30
+            nextServiceTime = "20:30";
+            return {
+                open: false,
+                message: `El nostre servei de take away està tancat. Tornem a obrir demà (dimecres) a les ${nextServiceTime}.`,
                 title: "Fora d'horari"
             };
         }
-        
-        // Si es antes del almuerzo
-        if (currentTime < lunchStart) {
-            nextServiceTime = "13:30";
-            nextServiceDay = "avui";
-        } 
-        // Si es después del almuerzo y antes de la cena
-        else if (currentTime < dinnerStart) {
-            nextServiceTime = "20:30";
-            nextServiceDay = "avui";
-        }
-        // Si es después de la cena (y no es domingo)
-        else {
-            nextServiceTime = "13:30";
-            nextServiceDay = "demà";
-            
-            // Si es sábado por la noche, el próximo es miércoles
-            if (day === 6) {
-                nextServiceDay = "dimecres";
-            }
-        }
-        
-        return {
-            open: false,
-            message: `El nostre servei de take away està tancat. Tornem a obrir ${nextServiceDay} a les ${nextServiceTime}.`,
-            title: "Fora d'horari"
-        };
     }
+    
+    // 3. Comprobar si es Domingo (solo abierto a mediodía)
+    if (day === 0) {
+        // Horario de comida del domingo (12:00 - 15:30)
+        if (currentTime >= lunchStart && currentTime <= lunchEnd) {
+            return { open: true };
+        }
+        
+        // Fuera de horario del domingo
+        let nextServiceTime = "";
+        if (currentTime < lunchStart) {
+            // Antes del almuerzo
+            nextServiceTime = "12:00";
+            return {
+                open: false,
+                message: `El nostre servei de take away està tancat. Tornem a obrir avui a les ${nextServiceTime}.`,
+                title: "Fora d'horari"
+            };
+        } else {
+            // Después del almuerzo del domingo, el próximo es el martes a las 20:30
+            nextServiceTime = "20:30";
+            return {
+                open: false,
+                message: `Tornem a obrir dimarts a les ${nextServiceTime}.`,
+                title: "Fora d'horari"
+            };
+        }
+    }
+    
+    // 4. Comprobar Miércoles a Sábado (solo abierto por la noche)
+    // day es 3, 4, 5, o 6
+    
+    // Horario de cena (20:30 - 23:00)
+    if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
+        return { open: true };
+    }
+    
+    // 5. Fuera de horario de Miércoles a Sábado - determinar próximo servicio
+    let nextServiceTime = "";
+    let nextServiceDay = "";
+    
+    // Si es antes de la cena (Cerrado mediodía)
+    if (currentTime < dinnerStart) {
+        nextServiceTime = "20:30";
+        nextServiceDay = "avui";
+    } 
+    // Si es después de la cena
+    else {
+        nextServiceTime = "20:30";
+        nextServiceDay = "demà";
+        
+        // Si es sábado por la noche, el próximo es el domingo a mediodía
+        if (day === 6) {
+            nextServiceTime = "12:00";
+            nextServiceDay = "demà (diumenge)";
+        }
+    }
+    
+    return {
+        open: false,
+        message: `El nostre servei de take away està tancat. Tornem a obrir ${nextServiceDay} a les ${nextServiceTime}.`,
+        title: "Fora d'horari"
+    };
+}
 
     // Función para deshabilitar el sistema de pedidos - MEJORADA
      function disableOrderSystem(reason) {
