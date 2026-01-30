@@ -93,6 +93,42 @@
         <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const span = document.querySelector(".close");
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // 1. Si clicamos en la imagen, abrimos el modal
+            if (e.target.classList.contains('menu-item-image')) {
+                if (modal && modalImg) {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
+                }
+                e.stopPropagation(); // Evita que se abra la descripción al ampliar foto
+                return;
+            }
+
+            // 2. Si clicamos en cualquier otra parte del plato, activamos la descripción
+            // Esto activa la clase .active que ya tienes en tu CSS
+            item.classList.toggle('active');
+        });
+    });
+
+    // Cerrar el modal
+    if (span) {
+        span.onclick = () => { modal.style.display = "none"; }
+    }
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+});
+</script>
 </body>
 </html>
