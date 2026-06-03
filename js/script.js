@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
   
     if (form) {
-      const API_URL = 'https://script.google.com/macros/s/AKfycbyTqJHtWTDNNXsQwOfnpMr9yUtM8f0Sx9R5HRX4G8jxngrXqOJhOQoNYGEJclQBWBOSGA/exec';
+      const API_URL = 'https://script.google.com/macros/s/AKfycbwPTWwjSRGk_nS2qsERrfUdpqyRDkiwQxsudpI7gkBn37t27DuMGGtrTKpUn_tAixxCSA/exec';
       
       const horaSelect = document.getElementById('hora');
       const guestsSelect = document.getElementById('guests');
