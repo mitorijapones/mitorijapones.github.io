@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
   
     if (form) {
-      const API_URL = 'https://script.google.com/macros/s/AKfycbz7IKm3zUN1O6hJW-EV-ThvkF7tgAeX9GTxPgqRpgoPE9LKZ7q5k4fW-QGehnoKKNyMwQ/exec';
+      const API_URL = 'https://script.google.com/macros/s/AKfycbyTqJHtWTDNNXsQwOfnpMr9yUtM8f0Sx9R5HRX4G8jxngrXqOJhOQoNYGEJclQBWBOSGA/exec';
       
       const horaSelect = document.getElementById('hora');
       const guestsSelect = document.getElementById('guests');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         ],
         locale: {
-          firstDayOfWeek: 1 // La semana empieza en lunes
+          firstDayOfWeek: 1
         },
         onReady: () => {
           dateInput.value = nextOpenDate;
@@ -75,23 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
       function updateTimeOptions(data, dateStr) {
         resetSelectors();
         
-        // Datos de disponibilidad sincronizados con el nuevo Apps Script
         const afternoon = data.afternoonAvailable;
         const night1 = data.night1Available;
         const night2 = data.night2Available;
-        const night3 = data.night3Available; 
   
         const times = {
-          afternoon: ["13:30", "14:00", "14:30"], // Actualizado al nuevo horario de mediodía
+          afternoon: ["13:30", "14:00", "14:30"],
           night1: ["20:30"], 
-          night2: ["21:30"],
-          night3: ["22:30"]
+          night2: ["22:15"]
         };
   
         let optionsAdded = 0;
   
         // --- TURNO MEDIODÍA ---
-        // Si el Apps Script envía que está cerrado (Mie/Jue), afternoon será 0 y no se añadirán
         if (afternoon > 0) {
           times.afternoon.forEach(time => {
             horaSelect.add(new Option(`Tarda - ${time}`, time));
@@ -99,8 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
   
-        // --- LÓGICA DE CENAS ---
-        // Se aplica para todas las noches de apertura (Miércoles a Domingo)
+        // --- TURNO NOCHE (Miércoles a Domingo) ---
         if (night1 > 0) {
             times.night1.forEach(time => {
                 horaSelect.add(new Option(`Nit - ${time}`, time));
@@ -109,12 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (night2 > 0) {
             times.night2.forEach(time => {
-                horaSelect.add(new Option(`Nit - ${time}`, time));
-                optionsAdded++;
-            });
-        }
-        if (night3 > 0) {
-            times.night3.forEach(time => {
                 horaSelect.add(new Option(`Nit - ${time}`, time));
                 optionsAdded++;
             });
@@ -129,12 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const time = horaSelect.value;
         if (!time) return;
   
-        // Lógica simplificada para saber qué cupo revisar según el nuevo formato
-        let shiftType = 'afternoon'; // Por defecto tarde
+        let shiftType = 'afternoon';
         
         if (time === '20:30') shiftType = 'night1';
-        else if (time === '21:30') shiftType = 'night2';
-        else if (time === '22:30') shiftType = 'night3';
+        else if (time === '22:15') shiftType = 'night2';
   
         fetch(`${API_URL}?date=${dateInput.value}&t=${Date.now()}`)
           .then(res => res.json())
@@ -144,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (shiftType === 'afternoon') available = data.afternoonAvailable;
             else if (shiftType === 'night1') available = data.night1Available;
             else if (shiftType === 'night2') available = data.night2Available;
-            else if (shiftType === 'night3') available = data.night3Available;
             
             updateGuests(available);
           });
