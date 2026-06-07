@@ -1,3 +1,5 @@
+
+const MANTENIMIENTO = true;
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
   
@@ -8,6 +10,41 @@ document.addEventListener('DOMContentLoaded', () => {
       const guestsSelect = document.getElementById('guests');
       const dateInput = document.getElementById('date');
       const submitBtn = form.querySelector('button[type="submit"]');
+
+      // LÓGICA DE BLOQUEO POR ENCIMA (Si mantenimiento está activo)
+      if (MANTENIMIENTO) {
+        form.style.position = 'relative';
+        
+        // Creamos la capa oscura flotante
+        const overlay = document.createElement('div');
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.85)'; // Fondo negro translúcido
+        overlay.style.color = '#ffffff';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '1000';
+        overlay.style.borderRadius = '8px'; 
+        overlay.style.fontSize = '1.3rem';
+        overlay.style.fontWeight = 'bold';
+        overlay.style.textAlign = 'center';
+        overlay.style.padding = '20px';
+        overlay.textContent = 'Reservas temporalmente no disponibles'; // Mensaje en pantalla
+        
+        form.appendChild(overlay);
+        
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'No disponible';
+        }
+        
+        // Detiene el resto de ejecuciones para no llamar a la API innecesariamente
+        return; 
+      }
   
       // 1. CALENDARIO: Bloqueamos Lunes (1) y Martes (2)
       const nextOpenDate = getNextOpenDate();

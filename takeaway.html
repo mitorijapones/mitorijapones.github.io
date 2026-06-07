@@ -1760,6 +1760,13 @@
           <p>&copy; 2025 Restaurante Mitori. Todos los derechos reservados.</p>
         </footer>
         <script>
+          // =================================================================
+        // CONTROL MANUAL DEL TAKE AWAY:
+        // true  -> Bloqueado manualmente (Muestra pantalla de cerrado)
+        // false -> Abierto manualmente (Permite pedir de forma libre)
+        const TAKEAWAY_BLOQUEADO = true; 
+        // =================================================================
+
       function getSpainTime() {
     const now = new Date();
     return new Date(now.toLocaleString("en-US", { timeZone: "Europe/Madrid" }));
@@ -1922,125 +1929,43 @@
             }, 3000);
         }
 
-          // Función para verificar horario de servicio - ACTUALIZADA
-function checkServiceHours() {
-    const now = getSpainTime();
-    const day = now.getDay(); // 0 = Domingo, 1 = Lunes, 2 = Martes...
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const currentTime = hours * 60 + minutes;
-    
-    // Horarios en minutos desde medianoche
-    // Los horarios se han ajustado para ser inclusivos al inicio y final del servicio.
-    const lunchStart = 12 * 60 + 15; // 12:15
-    const lunchEnd = 15 * 60 + 15; // 15:15
-    
-    const dinnerStart = 18 * 60 ; // 18:00
-    const dinnerEnd = 22 * 60 ; // 22:00
-    
-    // 1. Comprobar si es Lunes (cerrado todo el día)
-    if (day === 1) {
-        return {
-            open: false,
-            message: "Avui estem tancats. Tornem a obrir demà (dimarts) a les 20:30.",
-            title: "Tancat el dilluns"
-        };
-    }
-    
-    // 2. Comprobar si es Martes (solo abierto por la noche)
-    if (day === 2) {
-        // Horario de cena del martes (20:30 - 23:00)
-        if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
-            return { open: true };
-        }
-        
-        // Fuera de horario del martes
-        let nextServiceTime = "";
-        if (currentTime < dinnerStart) {
-            // Antes de la cena
-            nextServiceTime = "20:30";
-            return {
-                open: false,
-                message: `El nostre servei de take away està tancat. Tornem a obrir avui a les ${nextServiceTime}.`,
-                title: "Fora d'horari"
-            };
-        } else {
-            // Después de la cena del martes, el próximo es el miércoles a las 20:30
-            nextServiceTime = "20:30";
-            return {
-                open: false,
-                message: `El nostre servei de take away està tancat. Tornem a obrir demà (dimecres) a les ${nextServiceTime}.`,
-                title: "Fora d'horari"
-            };
-        }
-    }
-    
-    // 3. Comprobar si es Domingo (solo abierto a mediodía)
-    if (day === 0) {
-        // Horario de comida del domingo (12:00 - 15:30)
-        if (currentTime >= lunchStart && currentTime <= lunchEnd) {
-            return { open: true };
-        }
-        
-        // Fuera de horario del domingo
-        let nextServiceTime = "";
-        if (currentTime < lunchStart) {
-            // Antes del almuerzo
-            nextServiceTime = "12:00";
-            return {
-                open: false,
-                message: `El nostre servei de take away està tancat. Tornem a obrir avui a les ${nextServiceTime}.`,
-                title: "Fora d'horari"
-            };
-        } else {
-            // Después del almuerzo del domingo, el próximo es el martes a las 20:30
-            nextServiceTime = "20:30";
-            return {
-                open: false,
-                message: `Tornem a obrir dimarts a les ${nextServiceTime}.`,
-                title: "Fora d'horari"
-            };
-        }
-    }
-    
-    // 4. Comprobar Miércoles a Sábado (solo abierto por la noche)
-    // day es 3, 4, 5, o 6
-    
-    // Horario de cena (20:30 - 23:00)
-    if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
-        return { open: true };
-    }
-    
-    // 5. Fuera de horario de Miércoles a Sábado - determinar próximo servicio
-    let nextServiceTime = "";
-    let nextServiceDay = "";
-    
-    // Si es antes de la cena (Cerrado mediodía)
-    if (currentTime < dinnerStart) {
-        nextServiceTime = "20:30";
-        nextServiceDay = "avui";
-    } 
-    // Si es después de la cena
-    else {
-        nextServiceTime = "20:30";
-        nextServiceDay = "demà";
-        
-        // Si es sábado por la noche, el próximo es el domingo a mediodía
-        if (day === 6) {
-            nextServiceTime = "12:00";
-            nextServiceDay = "demà (diumenge)";
-        }
-    }
-    
-    return {
-        open: false,
-        message: `El nostre servei de take away està tancat. Tornem a obrir ${nextServiceDay} a les ${nextServiceTime}.`,
-        title: "Fora d'horari"
-    };
-}
 
-    // Función para deshabilitar el sistema de pedidos - MEJORADA
- 
+          // Función para deshabilitar el sistema de pedidos
+          function disableOrderSystem(reason) {
+            const closedMessage = document.getElementById('closedMessage');
+            if (closedMessage) {
+                closedMessage.style.display = 'block';
+                document.getElementById('closedMessageTitle').textContent = reason.title;
+                document.getElementById('closedMessageText').textContent = reason.message;
+            }
+            
+            const overlay = document.getElementById('closedOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                document.getElementById('overlayTitle').textContent = reason.title;
+                document.getElementById('overlayText').textContent = reason.message;
+            }
+            
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.disabled = true;
+                button.classList.add('disabled');
+            });
+            
+            const submitBtn = document.getElementById('submitOrder');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
+            }
+            
+            document.querySelectorAll('.section-title').forEach(title => {
+                title.style.pointerEvents = 'none';
+                title.style.cursor = 'default';
+                title.classList.add('disabled');
+            });
+        }
+
+
+
 
         // Manejar el envío del formulario a Formspree
         document.getElementById('orderForm').addEventListener('submit', function (e) {
@@ -2100,18 +2025,17 @@ function checkServiceHours() {
         });
 
         // Al cargar la página, verificar horario de servicio
-    document.addEventListener('DOMContentLoaded', function() {
-        // Comprobar horario de servicio
-        const serviceStatus = checkServiceHours();
-        
-        console.log("Estado del servicio:", serviceStatus);
-        
-        if (!serviceStatus.open) {
-            disableOrderSystem({
-                title: serviceStatus.title,
-                message: serviceStatus.message
-            });
-        }
+   document.addEventListener('DOMContentLoaded', function() {
+            // Evaluamos la variable manual directamente sin consultar el reloj interno
+            if (TAKEAWAY_BLOQUEADO) {
+                disableOrderSystem({
+                    title: "Servei temporalment tancat",
+                    message: "El nostre servei de take away no està disponible en aquest moment."
+                });
+                console.log("Take Away bloqueado manualmente.");
+            } else {
+                console.log("Take Away activo manualmente.");
+            }
             
             // Inicializar el carrito
             updateCart();
