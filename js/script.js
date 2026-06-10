@@ -1,5 +1,5 @@
 
-const MANTENIMIENTO = true;
+const MANTENIMIENTO = flase;
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
   
